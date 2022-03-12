@@ -1,10 +1,13 @@
 package rs.naprednejava.medicalmanagementsys.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
@@ -13,7 +16,7 @@ public class Patient extends User{
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userid;
+    private Long userid;
 	
 	@Column(name = "contact")
 	private String contact;
@@ -24,11 +27,14 @@ public class Patient extends User{
 	@Column(name = "gender")
 	private String gender;
 
-	public int getUserid() {
+//	@OneToMany(mappedBy = "patient")
+//    Set<Examination> examination;
+	
+	public Long getUserid() {
 		return userid;
 	}
 
-	public void setUserid(int userid) {
+	public void setUserid(Long userid) {
 		this.userid = userid;
 	}
 
@@ -56,26 +62,25 @@ public class Patient extends User{
 		this.gender = gender;
 	}
 
-	public Patient(int userid, String firstName, String lastName, String username, String password, int userid2,
+//	public Set<Examination> getExamination() {
+//		return examination;
+//	}
+  
+	public Patient(Long userid, String firstName, String lastName, String username, String password, int userid2,
 			String contact, String allergies, String gender) {
 		super(userid, firstName, lastName, username, password);
-		userid = userid2;
-		this.contact = contact;
-		this.allergies = allergies;
-		this.gender = gender;
-	}
-
-	public Patient(int userid, String firstName, String lastName, String username, String password) {
-		super(userid, firstName, lastName, username, password);
-	}
-
-	public Patient(int userid, String contact, String allergies, String gender) {
 		this.userid = userid;
 		this.contact = contact;
 		this.allergies = allergies;
 		this.gender = gender;
 	}
-    
+	
+	
+	public Patient(Long userid, String firstName, String lastName, String username, String password) {
+		super(userid, firstName, lastName, username, password);
+	}
+
+	
 	public Patient() {
 		super();
 	}

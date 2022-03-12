@@ -13,16 +13,16 @@ public class Medicine {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int medicineid;
+	private Long medicineid;
 	
 	@Column(name = "name")
 	private String name;
 
-	public int getMedicineid() {
+	public Long getMedicineid() {
 		return medicineid;
 	}
 
-	public void setMedicineid(int medicineid) {
+	public void setMedicineid(Long medicineid) {
 		this.medicineid = medicineid;
 	}
 
@@ -34,7 +34,7 @@ public class Medicine {
 		this.name = name;
 	}
 
-	public Medicine(int medicineid, String name) {
+	public Medicine(Long medicineid, String name) {
 		this.medicineid = medicineid;
 		this.name = name;
 	}
