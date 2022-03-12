@@ -1,10 +1,13 @@
 package rs.naprednejava.medicalmanagementsys.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,6 +21,10 @@ public class Medicine {
 	@Column(name = "name")
 	private String name;
 
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "companyId", referencedColumnName = "companyId")
+    private PharmaceuticalCompany pharmaceuticalCompany;
+	
 	public Long getMedicineid() {
 		return medicineid;
 	}
@@ -33,10 +40,19 @@ public class Medicine {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public PharmaceuticalCompany getPharmaceuticalCompany() {
+		return pharmaceuticalCompany;
+	}
 
-	public Medicine(Long medicineid, String name) {
+	public void setName(PharmaceuticalCompany pharmaceuticalCompany) {
+		this.pharmaceuticalCompany = pharmaceuticalCompany;
+	}
+
+	public Medicine(Long medicineid, String name, PharmaceuticalCompany pharmaceuticalCompany) {
 		this.medicineid = medicineid;
 		this.name = name;
+		this.pharmaceuticalCompany = pharmaceuticalCompany;
 	}
 
 	public Medicine() {

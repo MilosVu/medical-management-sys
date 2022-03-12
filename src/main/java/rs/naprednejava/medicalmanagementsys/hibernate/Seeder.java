@@ -1,5 +1,7 @@
 package rs.naprednejava.medicalmanagementsys.hibernate;
 
+import java.io.Serializable;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -16,8 +18,11 @@ public class Seeder {
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		session.save(m1);
+		Serializable m1Id = session.save(m1);
 		session.getTransaction().commit();
+		
+		System.out.println("=========================================================");
+		System.out.println(m1Id);
 	}
 
 }
