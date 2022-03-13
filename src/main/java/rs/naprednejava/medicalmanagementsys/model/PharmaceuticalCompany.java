@@ -13,30 +13,30 @@ public class PharmaceuticalCompany {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long companyId;
+    private Long company_id;
     
     @Column(name = "name")
-    private double name;
+    private String name;
 
 	public Long getCompanyId() {
-		return companyId;
+		return company_id;
 	}
 
-	public void setCompanyId(Long companyId) {
-		this.companyId = companyId;
+	public void setCompanyId(Long company_id) {
+		this.company_id = company_id;
 	}
 
-	public double getName() {
+	public String getName() {
 		return name;
 	}
 
-	public void setName(double name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
-	public PharmaceuticalCompany(Long companyId, double name) {
+	public PharmaceuticalCompany(Long company_id, String name) {
 		super();
-		this.companyId = companyId;
+		this.company_id = company_id;
 		this.name = name;
 	}
 

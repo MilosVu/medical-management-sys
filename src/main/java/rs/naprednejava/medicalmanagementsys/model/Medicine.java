@@ -22,7 +22,7 @@ public class Medicine {
 	private String name;
 
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "companyId", referencedColumnName = "companyId")
+    @JoinColumn(name = "company_id", referencedColumnName = "company_id")
     private PharmaceuticalCompany pharmaceuticalCompany;
 	
 	public Long getMedicineid() {
