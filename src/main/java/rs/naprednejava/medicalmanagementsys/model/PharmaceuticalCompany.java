@@ -39,6 +39,11 @@ public class PharmaceuticalCompany {
 		this.company_id = company_id;
 		this.name = name;
 	}
+	
+	public PharmaceuticalCompany(String name) {
+		super();
+		this.name = name;
+	}
 
 	public PharmaceuticalCompany() {
 		super();
