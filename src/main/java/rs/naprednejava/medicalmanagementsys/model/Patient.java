@@ -84,5 +84,11 @@ public class Patient extends User{
 	public Patient() {
 		super();
 	}
+
+	@Override
+	public String toString() {
+		return super.toString() + " Patient [userid=" + userid + ", contact=" + contact + ", allergies=" + allergies + ", gender=" + gender
+				+ "]";
+	}
 	
 }
