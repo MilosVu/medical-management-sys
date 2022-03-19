@@ -1,38 +1,32 @@
 package rs.naprednejava.medicalmanagementsys.model;
 
-import java.io.Serializable;
+import java.time.LocalTime;
 import java.util.GregorianCalendar;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 
-@Entity
+@Entity(name="Examination")
 @Table(name = "examination")
-public class Examination implements Serializable{
+public class Examination{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
+	@EmbeddedId
+	private ExaminationId id;
 	
 	@ManyToOne
-    @JoinColumn(name = "doctorid")
+    @MapsId("doctorid")
 	private Doctor doctor;
 
     @ManyToOne
-    @JoinColumn(name = "patientid")
+    @MapsId("patientid")
     private Patient patient;
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "status")
     private boolean status;
     
     @Column(name = "usercanceled")
@@ -41,7 +35,41 @@ public class Examination implements Serializable{
     @Column(name = "doctorcanceled")
     private boolean doctorCanceled;
 
+    @Column(name = "dateOfExamination")
+    private GregorianCalendar dateOfExamination;
+    
+    
 	
+	public Examination(ExaminationId id, Doctor doctor, Patient patient, boolean status, boolean userCanceled,
+			boolean doctorCanceled, GregorianCalendar dateOfExamination ) {
+		super();
+		this.id = id;
+		this.doctor = doctor;
+		this.patient = patient;
+		this.status = status;
+		this.userCanceled = userCanceled;
+		this.doctorCanceled = doctorCanceled;
+		this.dateOfExamination = dateOfExamination;
+		
+	}
+
+	public GregorianCalendar getDateOfExamination() {
+		return dateOfExamination;
+	}
+
+	public void setDateOfExamination(GregorianCalendar dateOfExamination) {
+		this.dateOfExamination = dateOfExamination;
+	}
+
+
+	public ExaminationId getId() {
+		return id;
+	}
+
+	public void setId(ExaminationId id) {
+		this.id = id;
+	}
+
 	public Doctor getDoctor() {
 		return doctor;
 	}
@@ -82,16 +110,7 @@ public class Examination implements Serializable{
 		this.doctorCanceled = doctorCanceled;
 	}
 
-	public Examination(Doctor doctor, Patient patient, boolean status,
-			boolean userCanceled, boolean doctorCanceled) {
-		super();
-		
-		this.doctor = doctor;
-		this.patient = patient;
-		this.status = status;
-		this.userCanceled = userCanceled;
-		this.doctorCanceled = doctorCanceled;
-	}
+	
 
 	public Examination() {
 		super();

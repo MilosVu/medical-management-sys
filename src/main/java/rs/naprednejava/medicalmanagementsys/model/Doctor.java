@@ -10,11 +10,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
+
+
+import java.util.ArrayList;
 import java.util.Set;
 
 
-@Entity
-@PrimaryKeyJoinColumn(name = "userid")
+@Entity(name="Doctor")
+@Table(name="doctor")
 public class Doctor extends User{
 
 	@Id
@@ -24,8 +29,9 @@ public class Doctor extends User{
     @Column(name = "fees")
     private double fees;
     
-//    @OneToMany(mappedBy = "doctor")
-//    Set<Examination> examination;
+    @OneToMany(mappedBy = "doctor",
+    		cascade = CascadeType.ALL)
+    private java.util.List<Examination> examination=new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "specializationId", referencedColumnName = "specializationId")

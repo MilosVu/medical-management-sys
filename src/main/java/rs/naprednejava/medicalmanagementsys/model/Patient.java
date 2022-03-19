@@ -1,7 +1,10 @@
 package rs.naprednejava.medicalmanagementsys.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,9 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
-@Entity
-@PrimaryKeyJoinColumn(name = "userid")
+@Entity(name="Patient")
+@Table(name="patient")
 public class Patient extends User{
 
 	@Id
@@ -30,6 +34,9 @@ public class Patient extends User{
 //	@OneToMany(mappedBy = "patient")
 //    Set<Examination> examination;
 	
+	@OneToMany(mappedBy = "patient",
+    		cascade = CascadeType.ALL)
+    private List<Examination> examination=new ArrayList<>();
 	public Long getUserid() {
 		return userid;
 	}
