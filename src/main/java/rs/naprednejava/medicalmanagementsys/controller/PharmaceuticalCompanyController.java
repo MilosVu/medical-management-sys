@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import rs.naprednejava.medicalmanagementsys.exception.ResourceNotFoundException;
 import rs.naprednejava.medicalmanagementsys.model.PharmaceuticalCompany;
 import rs.naprednejava.medicalmanagementsys.repository.PharmaceuticalCompanyRepository;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1/")
 public class PharmaceuticalCompanyController {
