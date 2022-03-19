@@ -31,7 +31,7 @@ public class PatientController {
     @PostMapping("/patients")
  	public Patient createPatient(@RequestBody Patient patient) {
     	System.out.println(patient);
-    	return new Patient(1L, "test", "test", "test", "test");
+    	return new Patient(1L, "test", "test","test", "test", "test");
  		//return patientRepository.save(patient);
  	}
     

@@ -63,9 +63,9 @@ public class Doctor extends User{
 		super();
 	}
 
-	public Doctor(Long userid, String firstName, String lastName, String username, String password,
+	public Doctor(Long userid, String firstName, String lastName, String username,String email, String password,
 			double fees, Specialization specialization) {
-		super(userid, firstName, lastName, username, password);
+		super(userid, firstName, lastName, username, email, password);
 		this.userid = userid;
 		this.fees = fees;
 		this.specialization = specialization;

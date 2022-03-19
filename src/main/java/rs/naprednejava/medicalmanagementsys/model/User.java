@@ -29,15 +29,19 @@ public class User {
     @Column(name = "username")
     private String username;
     
+    @Column(name = "email")
+    private String email;
+    
     @Column(name = "password")
     private String password;
 
-    public User(Long userid, String firstName, String lastName, String username, String password) {
+    public User(Long userid, String firstName, String lastName, String username, String password,String email) {
         this.userid = userid;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
+        this.email = email;
     }
 
     public User() {
@@ -86,11 +90,19 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
 	@Override
 	public String toString() {
 		return "User [userid=" + userid + ", firstName=" + firstName + ", lastName=" + lastName + ", username="
-				+ username + ", password=" + password + "]";
+				+ username + ", email="+email+", password=" + password + "]";
 	}
     
 }
