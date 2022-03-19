@@ -66,9 +66,9 @@ public class Patient extends User{
 //		return examination;
 //	}
   
-	public Patient(Long userid, String firstName, String lastName, String username, String password, int userid2,
+	public Patient(Long userid, String firstName, String lastName, String username, String email,String password, int userid2,
 			String contact, String allergies, String gender) {
-		super(userid, firstName, lastName, username, password);
+		super(userid, firstName, lastName, username, email, password);
 		this.userid = userid;
 		this.contact = contact;
 		this.allergies = allergies;
@@ -76,8 +76,8 @@ public class Patient extends User{
 	}
 	
 	
-	public Patient(Long userid, String firstName, String lastName, String username, String password) {
-		super(userid, firstName, lastName, username, password);
+	public Patient(Long userid, String firstName, String lastName, String username,String email, String password) {
+		super(userid, firstName, lastName, username, email,password);
 	}
 
 	
