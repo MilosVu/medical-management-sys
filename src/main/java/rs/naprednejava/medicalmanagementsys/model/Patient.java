@@ -30,10 +30,14 @@ public class Patient extends User{
 	
 	@Column(name = "gender")
 	private String gender;
+	
+	
 
 //	@OneToMany(mappedBy = "patient")
 //    Set<Examination> examination;
 	
+	
+
 	@OneToMany(mappedBy = "patient",
     		cascade = CascadeType.ALL)
     private List<Examination> examination=new ArrayList<>();
@@ -74,19 +78,17 @@ public class Patient extends User{
 //	}
   
 	public Patient(Long userid, String firstName, String lastName, String username, String email,String password, int userid2,
-			String contact, String allergies, String gender) {
-		super(userid, firstName, lastName, username, email, password);
+			String contact, String allergies, String gender,String userRole) {
+		super(userid, firstName, lastName, username, email, password,userRole);
 		this.userid = userid;
 		this.contact = contact;
 		this.allergies = allergies;
 		this.gender = gender;
+		
 	}
 	
 	
-	public Patient(Long userid, String firstName, String lastName, String username,String email, String password) {
-		super(userid, firstName, lastName, username, email,password);
-	}
-
+	
 	
 	public Patient() {
 		super();

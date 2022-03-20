@@ -32,19 +32,33 @@ public class User {
     @Column(name = "email")
     private String email;
     
+    
+    
     @Column(name = "password")
     private String password;
+    
+    @Column(name = "userRole")
+    private String userRole;
 
-    public User(Long userid, String firstName, String lastName, String username, String password,String email) {
+    public User(Long userid, String firstName, String lastName, String username, String password,String email,String userRole) {
         this.userid = userid;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
         this.email = email;
+        this.userRole=userRole;
     }
 
-    public User() {
+    public String getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(String userRole) {
+		this.userRole = userRole;
+	}
+
+	public User() {
     }
     
     public User(String username, String password) {
@@ -102,7 +116,9 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [userid=" + userid + ", firstName=" + firstName + ", lastName=" + lastName + ", username="
-				+ username + ", email="+email+", password=" + password + "]";
+				+ username + ", email=" + email + ", password=" + password + ", userRole=" + userRole + "]";
 	}
+
+	
     
 }
