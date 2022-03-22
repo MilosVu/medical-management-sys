@@ -7,6 +7,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,7 +37,15 @@ public class UserController {
     //Login
     @PostMapping("/login")
     public List<User> login(@RequestBody User user){
-    	return userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
+    	return userRepository.findByUsernameAndPasswordAndUserRole(user.getUsername(), user.getPassword(), user.getUserRole());
     }
+    
+    //Get user by id
+    @GetMapping("/users/{id}")
+ 	public ResponseEntity<User> getUsersById(@PathVariable Long id) {
+    	User user = userRepository.findById(id)
+ 				.orElseThrow(() -> new ResourceNotFoundException("User does not exist with id :" + id));
+ 		return ResponseEntity.ok(user);
+ 	}
     
 }
