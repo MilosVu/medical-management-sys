@@ -41,16 +41,6 @@ public class DoctorController {
  		return doctorRepository.save(doctor);
  	}
     
-    //Delete doctor
-   	@DeleteMapping("/doctors/{id}")
-   	public ResponseEntity<Map<String, Boolean>> deleteDoctor(@PathVariable Long id){
-   		Doctor doctor = doctorRepository.findById(id)
-   				.orElseThrow(() -> new ResourceNotFoundException("Doctor does not exist with id :" + id));
-   		
-   		doctorRepository.delete(doctor);
-   		Map<String, Boolean> response = new HashMap<>();
-   		response.put("deleted", Boolean.TRUE);
-   		return ResponseEntity.ok(response);
-   	}
+  
 	
 }
