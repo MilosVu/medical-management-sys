@@ -13,7 +13,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 
-
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -24,25 +23,25 @@ public class Doctor extends User{
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userid;
+    private Long user_id;
     
     @Column(name = "fees")
     private double fees;
     
     @OneToMany(mappedBy = "doctor",
     		cascade = CascadeType.ALL)
-    private java.util.List<Examination> examination=new ArrayList<>();
+    private java.util.List<Examination> examination = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "specializationId", referencedColumnName = "specializationId")
+    @JoinColumn(name = "specialization_id", referencedColumnName = "specialization_id")
     private Specialization specialization;
     
-	public Long getUserid() {
-		return userid;
+	public Long getUserId() {
+		return user_id;
 	}
 
-	public void setUserid(Long userid) {
-		this.userid = userid;
+	public void setUserId(Long user_id) {
+		this.user_id = user_id;
 	}
 
 	public double getFees() {
@@ -61,21 +60,29 @@ public class Doctor extends User{
 		this.specialization = specialization;
 	}
 	
-//	public Set<Examination> getExamination() {
-//		return examination;
-//	}
-
 	public Doctor() {
 		super();
 	}
 
-	public Doctor(Long userid, String firstName, String lastName, String username,String email, String password,
-			double fees, String userRole, Specialization specialization) {
-		super(userid, firstName, lastName, username, email, password,userRole);
-		this.userid = userid;
+	public Doctor(Long user_id, String firstName, String lastName, String username,String email, String password,
+			double fees, Specialization specialization) {
+		super(user_id, firstName, lastName, username, email, password, "doctor");
+		this.user_id = user_id;
 		this.fees = fees;
 		this.specialization = specialization;
 	}
 
+	public Doctor(Long user_id) {
+		super(user_id);
+		this.user_id = user_id;
+	}
+
+	@Override
+	public String toString() {
+		return "Doctor [user_id=" + user_id + ", fees=" + fees + ", specialization="
+				+ specialization + "]";
+	}
+	
+	
 
 }

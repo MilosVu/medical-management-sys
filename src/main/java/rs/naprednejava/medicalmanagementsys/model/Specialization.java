@@ -13,7 +13,7 @@ public class Specialization {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int specializationId;
+	private Long specialization_id;
 	
 	@Column(name = "name")
 	private String name;
@@ -21,9 +21,9 @@ public class Specialization {
 	@Column(name = "graduated")
 	private String graduated;
 
-	public Specialization(int specializationId, String name, String graduated) {
+	public Specialization(Long specialization_id, String name, String graduated) {
 		super();
-		this.specializationId = specializationId;
+		this.specialization_id = specialization_id;
 		this.name = name;
 		this.graduated = graduated;
 	}
@@ -32,12 +32,12 @@ public class Specialization {
 		super();
 	}
 
-	public int getSpecializationId() {
-		return specializationId;
+	public Long getSpecializationId() {
+		return specialization_id;
 	}
 
-	public void setSpecializationId(int specializationId) {
-		this.specializationId = specializationId;
+	public void setSpecializationId(Long specialization_id) {
+		this.specialization_id = specialization_id;
 	}
 
 	public String getName() {
@@ -54,6 +54,12 @@ public class Specialization {
 
 	public void setGraduated(String graduated) {
 		this.graduated = graduated;
+	}
+
+	@Override
+	public String toString() {
+		return "Specialization [specialization_id=" + specialization_id + ", name=" + name + ", graduated=" + graduated
+				+ "]";
 	}
 	
 	

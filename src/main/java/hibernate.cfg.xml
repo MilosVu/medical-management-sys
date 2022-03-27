@@ -13,6 +13,13 @@
         <property name="connection.password">admin</property>
           
     	<mapping class="rs.naprednejava.medicalmanagementsys.model.Medicine"/>
+    	<mapping class="rs.naprednejava.medicalmanagementsys.model.PharmaceuticalCompany"/>
+    	<mapping class="rs.naprednejava.medicalmanagementsys.model.User"/>
+    	<mapping class="rs.naprednejava.medicalmanagementsys.model.Doctor"/>
+    	<mapping class="rs.naprednejava.medicalmanagementsys.model.Patient"/>
+		<mapping class="rs.naprednejava.medicalmanagementsys.model.Specialization"/>
+    	<mapping class="rs.naprednejava.medicalmanagementsys.model.Examination"/>
+    	
     </session-factory>  
   
 </hibernate-configuration>  

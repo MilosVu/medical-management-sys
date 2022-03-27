@@ -20,7 +20,7 @@ public class Patient extends User{
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userid;
+    private Long user_id;
 	
 	@Column(name = "contact")
 	private String contact;
@@ -37,16 +37,17 @@ public class Patient extends User{
 //    Set<Examination> examination;
 	
 	
-
 	@OneToMany(mappedBy = "patient",
     		cascade = CascadeType.ALL)
     private List<Examination> examination=new ArrayList<>();
-	public Long getUserid() {
-		return userid;
+	
+	
+	public Long getUserId() {
+		return user_id;
 	}
 
-	public void setUserid(Long userid) {
-		this.userid = userid;
+	public void setUserId(Long user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getContact() {
@@ -77,18 +78,20 @@ public class Patient extends User{
 //		return examination;
 //	}
   
-	public Patient(Long userid, String firstName, String lastName, String username, String email,String password, int userid2,
-			String contact, String allergies, String gender,String userRole) {
-		super(userid, firstName, lastName, username, email, password,userRole);
-		this.userid = userid;
+	public Patient(Long user_id, String firstName, String lastName, String username, String password, String email,
+			String contact, String allergies, String gender) {
+		super(user_id, firstName, lastName, username, email, password, "patient");
+		this.user_id = user_id;
 		this.contact = contact;
 		this.allergies = allergies;
 		this.gender = gender;
 		
 	}
 	
-	
-	
+	public Patient(Long user_id) {
+		super(user_id);
+		this.user_id = user_id;
+	}
 	
 	public Patient() {
 		super();
@@ -96,7 +99,7 @@ public class Patient extends User{
 
 	@Override
 	public String toString() {
-		return super.toString() + " Patient [userid=" + userid + ", contact=" + contact + ", allergies=" + allergies + ", gender=" + gender
+		return " Patient [user_id=" + user_id + ", contact=" + contact + ", allergies=" + allergies + ", gender=" + gender
 				+ "]";
 	}
 	

@@ -18,12 +18,12 @@ public class User {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userid;
+    private Long user_id;
     
-    @Column(name = "firstName")
+    @Column(name = "first_name")
     private String firstName;
     
-    @Column(name = "lastName")
+    @Column(name = "last_name")
     private String lastName;
     
     @Column(name = "username")
@@ -35,17 +35,24 @@ public class User {
     @Column(name = "password")
     private String password;
     
-    @Column(name = "userRole")
+    @Column(name = "user_role")
     private String userRole;
 
-    public User(Long userid, String firstName, String lastName, String username, String password,String email,String userRole) {
-        this.userid = userid;
+    public User(Long user_id, String firstName, String lastName, String username, String password, String email,String userRole) {
+        this.user_id = user_id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
         this.email = email;
         this.userRole=userRole;
+    }
+    
+    public User(Long user_id) {
+        this.user_id = user_id;
+    }
+    
+    public User() {
     }
 
     public String getUserRole() {
@@ -55,20 +62,17 @@ public class User {
 	public void setUserRole(String userRole) {
 		this.userRole = userRole;
 	}
-
-	public User() {
-    }
     
     public User(String username, String password) {
         this.password = password;
     }
 
-    public Long getUserid() {
-		return userid;
+    public Long getUserId() {
+		return user_id;
 	}
 
-	public void setUserid(Long userid) {
-		this.userid = userid;
+	public void setUserId(Long user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getFirstName() {
@@ -113,7 +117,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [userid=" + userid + ", firstName=" + firstName + ", lastName=" + lastName + ", username="
+		return "User [user_id=" + user_id + ", firstName=" + firstName + ", lastName=" + lastName + ", username="
 				+ username + ", email=" + email + ", password=" + password + ", userRole=" + userRole + "]";
 	}
 

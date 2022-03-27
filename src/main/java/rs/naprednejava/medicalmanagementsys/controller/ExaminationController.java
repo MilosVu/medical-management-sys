@@ -42,7 +42,7 @@ public class ExaminationController {
     @GetMapping("/examinations/doctor/{id}")
     public List<Examination> getAllExaminationsForDoctor(@PathVariable Long id){
     	Doctor d = new Doctor();
-    	d.setUserid(id);
+    	d.setUserId(id);
         return examinationRepository.findByDoctor(d);
     }
     
@@ -50,13 +50,15 @@ public class ExaminationController {
     @GetMapping("/examinations/patient/{id}")
     public List<Examination> getAllExaminationsForPatient(@PathVariable Long id){
     	Patient p = new Patient();
-    	p.setUserid(id);
+    	p.setUserId(id);
         return examinationRepository.findByPatient(p);
     }
 
     //Create examination
  	@PostMapping("/examinations")
  	public Examination createExamination(@RequestBody Examination examination) {
+ 		examination.setDoctorId(examination.getDoctor().getUserId());
+ 		examination.setPatientId(examination.getPatient().getUserId());
  		return examinationRepository.save(examination);
  	}
  	

@@ -6,6 +6,9 @@ import java.util.GregorianCalendar;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
@@ -15,15 +18,23 @@ import javax.persistence.Table;
 @Table(name = "examination")
 public class Examination{
 
-	@EmbeddedId
-	private ExaminationId id;
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "examination_id")
+	private Long examinationId;
+	
+	@Column(name = "doctor_user_id")
+	private Long doctorId;
+
+	@Column(name = "patient_user_id")
+    private Long patientId;
 	
 	@ManyToOne
-    @MapsId("doctorid")
+    @MapsId("doctorId")
 	private Doctor doctor;
 
     @ManyToOne
-    @MapsId("patientid")
+    @MapsId("patientId")
     private Patient patient;
     
     @Column(name = "status")
@@ -35,24 +46,9 @@ public class Examination{
     @Column(name = "doctorcanceled")
     private boolean doctorCanceled;
 
-    @Column(name = "dateOfExamination")
+    @Column(name = "date_of_examination")
     private GregorianCalendar dateOfExamination;
     
-    
-	
-	public Examination(ExaminationId id, Doctor doctor, Patient patient, boolean status, boolean userCanceled,
-			boolean doctorCanceled, GregorianCalendar dateOfExamination ) {
-		super();
-		this.id = id;
-		this.doctor = doctor;
-		this.patient = patient;
-		this.status = status;
-		this.userCanceled = userCanceled;
-		this.doctorCanceled = doctorCanceled;
-		this.dateOfExamination = dateOfExamination;
-		
-	}
-
 	public GregorianCalendar getDateOfExamination() {
 		return dateOfExamination;
 	}
@@ -61,13 +57,12 @@ public class Examination{
 		this.dateOfExamination = dateOfExamination;
 	}
 
-
-	public ExaminationId getId() {
-		return id;
+	public Long getExaminationId() {
+		return examinationId;
 	}
 
-	public void setId(ExaminationId id) {
-		this.id = id;
+	public void setExaminationId(Long examinationId) {
+		this.examinationId = examinationId;
 	}
 
 	public Doctor getDoctor() {
@@ -84,6 +79,22 @@ public class Examination{
 
 	public void setPatient(Patient patient) {
 		this.patient = patient;
+	}
+	
+	public Long getDoctorId() {
+		return doctorId;
+	}
+
+	public void setDoctorId(Long doctorId) {
+		this.doctorId = doctorId;
+	}
+
+	public Long getPatientId() {
+		return patientId;
+	}
+
+	public void setPatientId(Long patientId) {
+		this.patientId = patientId;
 	}
 
 	public boolean isStatus() {
@@ -111,10 +122,58 @@ public class Examination{
 	}
 
 	
-
 	public Examination() {
 		super();
 	}
-    
-    
+
+	public Examination(Long doctorId, Long patientId, Doctor doctor, Patient patient,
+			boolean status, boolean userCanceled, boolean doctorCanceled, GregorianCalendar dateOfExamination) {
+		super();
+		this.doctorId = doctor.getUserId();
+		this.patientId = patient.getUserId();
+		this.doctor = doctor;
+		this.patient = patient;
+		this.status = status;
+		this.userCanceled = userCanceled;
+		this.doctorCanceled = doctorCanceled;
+		this.dateOfExamination = dateOfExamination;
+	}
+	
+	public Examination(Long examinationId, Long doctorId, Long patientId, Doctor doctor, Patient patient,
+			boolean status, boolean userCanceled, boolean doctorCanceled, GregorianCalendar dateOfExamination) {
+		super();
+		this.examinationId = examinationId;
+		this.doctorId = doctor.getUserId();
+		this.patientId = patient.getUserId();
+		this.doctor = doctor;
+		this.patient = patient;
+		this.status = status;
+		this.userCanceled = userCanceled;
+		this.doctorCanceled = doctorCanceled;
+		this.dateOfExamination = dateOfExamination;
+	}
+
+	public Examination(Long examinationId, Doctor doctor, Patient patient,
+			boolean status, boolean userCanceled, boolean doctorCanceled, GregorianCalendar dateOfExamination) {
+		super();
+		this.examinationId = examinationId;
+		this.doctorId = doctor.getUserId();
+		this.patientId = patient.getUserId();
+		this.doctor = doctor;
+		this.patient = patient;
+		this.status = status;
+		this.userCanceled = userCanceled;
+		this.doctorCanceled = doctorCanceled;
+		this.dateOfExamination = dateOfExamination;
+	}
+	
+	@Override
+	public String toString() {
+		return "Examination [examinationId=" + examinationId + ", doctorId=" + doctorId + ", patientId=" + patientId
+				+ ", doctor=" + doctor + ", patient=" + patient + ", status=" + status + ", userCanceled="
+				+ userCanceled + ", doctorCanceled=" + doctorCanceled + ", dateOfExamination=" + dateOfExamination
+				+ "]";
+	}
+	
+	 
 }

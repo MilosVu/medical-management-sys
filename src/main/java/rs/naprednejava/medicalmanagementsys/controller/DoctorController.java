@@ -38,6 +38,7 @@ public class DoctorController {
     
     @PostMapping("/doctors")
  	public Doctor createDoctor(@RequestBody Doctor doctor) {
+    	doctor.setUserRole("doctor");
  		return doctorRepository.save(doctor);
  	}
     

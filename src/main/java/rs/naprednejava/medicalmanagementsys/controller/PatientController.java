@@ -30,7 +30,7 @@ public class PatientController {
 	
     @PostMapping("/patients")
  	public Patient createPatient(@RequestBody Patient patient) {
-    	System.out.println(patient);
+    	patient.setUserRole("patient");
     	return patientRepository.save(patient);
  		//return patientRepository.save(patient);
  	}
