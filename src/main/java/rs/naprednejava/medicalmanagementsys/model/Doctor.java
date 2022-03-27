@@ -71,6 +71,14 @@ public class Doctor extends User{
 		this.fees = fees;
 		this.specialization = specialization;
 	}
+	
+	public Doctor(String firstName, String lastName, String username,String email, String password,
+			double fees, Specialization specialization) {
+		super( firstName, lastName, username, email, password, "doctor");
+		this.user_id = user_id;
+		this.fees = fees;
+		this.specialization = specialization;
+	}
 
 	public Doctor(Long user_id) {
 		super(user_id);

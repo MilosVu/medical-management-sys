@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import rs.naprednejava.medicalmanagementsys.exception.ResourceNotFoundException;
 import rs.naprednejava.medicalmanagementsys.model.Doctor;
 import rs.naprednejava.medicalmanagementsys.model.Medicine;
+import rs.naprednejava.medicalmanagementsys.model.PharmaceuticalCompany;
 import rs.naprednejava.medicalmanagementsys.model.User;
 import rs.naprednejava.medicalmanagementsys.repository.UserRepository;
 
@@ -62,6 +63,12 @@ public class UserController {
    		Map<String, Boolean> response = new HashMap<>();
    		response.put("deleted", Boolean.TRUE);
    		return ResponseEntity.ok(response);
+   	}
+    
+  //Update user
+   	@PostMapping("/users")
+   	public User updateUser(@RequestBody User user) {
+   		return userRepository.save(user);
    	}
 
 }
