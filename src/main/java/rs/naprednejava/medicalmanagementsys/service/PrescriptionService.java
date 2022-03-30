@@ -31,6 +31,8 @@ public class PrescriptionService {
     
     
    	public Prescription createPrescription(Prescription prescription) {
+   		prescription.setExaminationId(prescription.getExamination().getExaminationId());
+ 		
    		return prescriptionRepository.save(prescription);
    	}
    	
