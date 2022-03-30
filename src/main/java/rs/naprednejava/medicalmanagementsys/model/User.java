@@ -48,6 +48,16 @@ public class User {
         this.userRole = userRole;
     }
     
+    public User( String firstName, String lastName, String username, String password, String email,String userRole) {
+        
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.userRole=userRole;
+    }
+    
     public User(Long user_id) {
         this.user_id = user_id;
     }

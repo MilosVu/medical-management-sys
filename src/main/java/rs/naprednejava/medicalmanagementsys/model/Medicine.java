@@ -54,6 +54,12 @@ public class Medicine {
 		this.name = name;
 		this.pharmaceuticalCompany = pharmaceuticalCompany;
 	}
+	
+	public Medicine(String name, PharmaceuticalCompany pharmaceuticalCompany) {
+		
+		this.name = name;
+		this.pharmaceuticalCompany = pharmaceuticalCompany;
+	}
 
 	public Medicine() {
 	}

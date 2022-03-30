@@ -37,6 +37,7 @@ public class MedicineController {
     //Create medicine
  	@PostMapping("/medicines")
  	public Medicine createMedicine(@RequestBody Medicine medicine) {
+ 		medicine.setMedicineid(0L);
  		return medicineRepository.save(medicine);
  	}
  	
