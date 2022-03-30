@@ -42,6 +42,11 @@ public class UserController {
     //Login
     @PostMapping("/login")
     public List<User> login(@RequestBody User user){
+    	
+    	System.out.println("=======================");
+    	System.out.println(user);
+    	System.out.println("=======================");
+    	
     	return userRepository.findByUsernameAndPasswordAndUserRole(user.getUsername(), user.getPassword(), user.getUserRole());
     }
     

@@ -12,5 +12,5 @@ import rs.naprednejava.medicalmanagementsys.model.User;
 public interface UserRepository extends JpaRepository<User, Long>{
 	
 	 List<User> findByUsernameAndPasswordAndUserRole(String username, String password, String userRole);
-    
+
 }

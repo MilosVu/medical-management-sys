@@ -19,6 +19,7 @@ import rs.naprednejava.medicalmanagementsys.exception.ResourceNotFoundException;
 import rs.naprednejava.medicalmanagementsys.model.Doctor;
 import rs.naprednejava.medicalmanagementsys.model.Medicine;
 import rs.naprednejava.medicalmanagementsys.model.Patient;
+import rs.naprednejava.medicalmanagementsys.model.User;
 import rs.naprednejava.medicalmanagementsys.repository.DoctorRepository;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -42,6 +43,13 @@ public class DoctorController {
  		return doctorRepository.save(doctor);
  	}
     
-  
+    
+    //Get doctor by id
+    @GetMapping("/doctors/{id}")
+ 	public ResponseEntity<Doctor> getUsersById(@PathVariable String id) {
+    	Doctor doctor = doctorRepository.findById(Long.parseLong(id))
+ 				.orElseThrow(() -> new ResourceNotFoundException("Doctor does not exist with id :" + id));
+ 		return ResponseEntity.ok(doctor);
+ 	}
 	
 }
