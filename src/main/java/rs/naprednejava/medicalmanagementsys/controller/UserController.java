@@ -25,6 +25,7 @@ import rs.naprednejava.medicalmanagementsys.model.Medicine;
 import rs.naprednejava.medicalmanagementsys.model.PharmaceuticalCompany;
 import rs.naprednejava.medicalmanagementsys.model.User;
 import rs.naprednejava.medicalmanagementsys.repository.UserRepository;
+import rs.naprednejava.medicalmanagementsys.service.UserService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -32,48 +33,38 @@ import rs.naprednejava.medicalmanagementsys.repository.UserRepository;
 public class UserController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
+    
     
     //Get all users
     @GetMapping("/users")
     public List<User> getAllUsers(){
-        return userRepository.findAll();
+    	return userService.getAllUsers();
+       
     }
     
     //Login
     @PostMapping("/login")
     public List<User> login(@RequestBody User user){
     	
-    	System.out.println("=======================");
-    	System.out.println(user);
-    	System.out.println("=======================");
-    	
-    	return userRepository.findByUsernameAndPasswordAndUserRole(user.getUsername(), user.getPassword(), user.getUserRole());
-    }
+    	return userService.login(user);
+    	}
     
     //Get user by id
     @GetMapping("/users/{id}")
  	public ResponseEntity<User> getUsersById(@PathVariable Long id) {
-    	User user = userRepository.findById(id)
- 				.orElseThrow(() -> new ResourceNotFoundException("User does not exist with id :" + id));
- 		return ResponseEntity.ok(user);
+    	return userService.getUsersById(id);
  	}
 
     @DeleteMapping("/users/{id}")
    	public ResponseEntity<Map<String, Boolean>> deleteUser(@PathVariable Long id){
-   		User user = userRepository.findById(id)
-   				.orElseThrow(() -> new ResourceNotFoundException("User does not exist with id :" + id));
-   		
-   		userRepository.delete(user);
-   		Map<String, Boolean> response = new HashMap<>();
-   		response.put("deleted", Boolean.TRUE);
-   		return ResponseEntity.ok(response);
+   		return userService.deleteUser(id);
    	}
     
     //Update user
    	@PostMapping("/users")
    	public User updateUser(@RequestBody User user) {
-   		return userRepository.save(user);
+   		return userService.updateUser(user);
    	}
 
 }

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import rs.naprednejava.medicalmanagementsys.exception.ResourceNotFoundException;
 import rs.naprednejava.medicalmanagementsys.model.Medicine;
 import rs.naprednejava.medicalmanagementsys.repository.MedicineRepository;
+import rs.naprednejava.medicalmanagementsys.service.MedicineService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -26,53 +27,36 @@ import rs.naprednejava.medicalmanagementsys.repository.MedicineRepository;
 public class MedicineController {
 
 	@Autowired
-    private MedicineRepository medicineRepository;
+    private MedicineService medicineService;
     
     //Get all medicines
     @GetMapping("/medicines")
     public List<Medicine> getAllMedicine(){
-        return medicineRepository.findAll();
+        return medicineService.getAllMedicine();
     }
 	
     //Create medicine
  	@PostMapping("/medicines")
  	public Medicine createMedicine(@RequestBody Medicine medicine) {
- 		medicine.setMedicineid(0L);
- 		return medicineRepository.save(medicine);
+ 		return medicineService.createMedicine(medicine);
  	}
  	
  	//Get medicine by id
  	@GetMapping("/medicines/{id}")
  	public ResponseEntity<Medicine> getEmployeeById(@PathVariable Long id) {
- 		Medicine medicine = medicineRepository.findById(id)
- 				.orElseThrow(() -> new ResourceNotFoundException("Medicine does not exist with id :" + id));
- 		return ResponseEntity.ok(medicine);
+ 		return medicineService.getEmployeeById(id);
  	}
  	
  	//Update medicine
  	@PutMapping("/medicines/{id}")
  	public ResponseEntity<Medicine> updateMedicine(@PathVariable Long id, @RequestBody Medicine medicineDetails){
- 		Medicine medicine = medicineRepository.findById(id)
- 				.orElseThrow(() -> new ResourceNotFoundException("Medicine does not exist with id :" + id));
- 		
- 		
- 		medicine.setName(medicineDetails.getName());
-
- 		
- 		Medicine updatedMedicine = medicineRepository.save(medicine);
- 		return ResponseEntity.ok(updatedMedicine);
+ 		return medicineService.updateMedicine(id, medicineDetails);
  	}
  	
  	//Delete medicine
  	@DeleteMapping("/medicines/{id}")
  	public ResponseEntity<Map<String, Boolean>> deleteMedicine(@PathVariable Long id){
- 		Medicine medicine = medicineRepository.findById(id)
- 				.orElseThrow(() -> new ResourceNotFoundException("Medicine does not exist with id :" + id));
- 		
- 		medicineRepository.delete(medicine);
- 		Map<String, Boolean> response = new HashMap<>();
- 		response.put("deleted", Boolean.TRUE);
- 		return ResponseEntity.ok(response);
+ 		return medicineService.deleteMedicine(id);
  	}
     
 }

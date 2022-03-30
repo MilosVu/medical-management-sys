@@ -21,6 +21,7 @@ import rs.naprednejava.medicalmanagementsys.model.Examination;
 import rs.naprednejava.medicalmanagementsys.model.Medicine;
 import rs.naprednejava.medicalmanagementsys.model.Patient;
 import rs.naprednejava.medicalmanagementsys.repository.ExaminationRepository;
+import rs.naprednejava.medicalmanagementsys.service.ExaminationService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -28,56 +29,42 @@ import rs.naprednejava.medicalmanagementsys.repository.ExaminationRepository;
 public class ExaminationController {
 
 	@Autowired
-    private ExaminationRepository examinationRepository;
+    private ExaminationService examinationService;
     
     //Get all examinations
     @GetMapping("/examinations")
     public List<Examination> getAllExaminations(){
-        return examinationRepository.findAll();
+        return examinationService.getAllExaminations();
     }
     
     //Get all examinations for specified doctor
     @GetMapping("/examinations/doctor/{id}")
     public List<Examination> getAllExaminationsForDoctor(@PathVariable Long id){
-    	Doctor d = new Doctor();
-    	d.setUserId(id);
-        return examinationRepository.findByDoctor(d);
+    	return examinationService.getAllExaminationsForDoctor(id);
     }
     
     //Get all examinations for specified patient
     @GetMapping("/examinations/patient/{id}")
     public List<Examination> getAllExaminationsForPatient(@PathVariable Long id){
-    	Patient p = new Patient();
-    	p.setUserId(id);
-        return examinationRepository.findByPatient(p);
+    	return examinationService.getAllExaminationsForPatient(id);
     }
 
     //Create examination
  	@PostMapping("/examinations")
  	public Examination createExamination(@RequestBody Examination examination) {
- 		examination.setDoctorId(examination.getDoctor().getUserId());
- 		examination.setPatientId(examination.getPatient().getUserId());
- 		return examinationRepository.save(examination);
+ 		return examinationService.createExamination(examination); 
  	}
  	
  	//Get examination by id
  	@GetMapping("/examinations/{id}")
  	public ResponseEntity<Examination> getEmployeeById(@PathVariable Long id) {
- 		Examination examination = examinationRepository.findById(id)
- 				.orElseThrow(() -> new ResourceNotFoundException("Examination does not exist with parameters"));
- 		return ResponseEntity.ok(examination);
+ 		return examinationService.getEmployeeById(id);
  	}
  	
  	//Delete examination
  	 	@DeleteMapping("/examinations/{id}")
  	 	public ResponseEntity<Map<String, Boolean>> deleteExamination(@PathVariable Long id){
- 	 		Examination examination = examinationRepository.findById(id)
- 	 				.orElseThrow(() -> new ResourceNotFoundException("Examination does not exist with id :" + id));
- 	 		
- 	 		examinationRepository.delete(examination);
- 	 		Map<String, Boolean> response = new HashMap<>();
- 	 		response.put("deleted", Boolean.TRUE);
- 	 		return ResponseEntity.ok(response);
+ 	 		return examinationService.deleteExamination(id);
  	 	}
  	
  	
