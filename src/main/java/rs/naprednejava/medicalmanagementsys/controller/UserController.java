@@ -70,7 +70,7 @@ public class UserController {
    		return ResponseEntity.ok(response);
    	}
     
-  //Update user
+    //Update user
    	@PostMapping("/users")
    	public User updateUser(@RequestBody User user) {
    		return userRepository.save(user);
