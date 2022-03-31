@@ -11,6 +11,7 @@ import rs.naprednejava.medicalmanagementsys.model.Doctor;
 import rs.naprednejava.medicalmanagementsys.model.Examination;
 import rs.naprednejava.medicalmanagementsys.model.Medicine;
 import rs.naprednejava.medicalmanagementsys.model.Patient;
+import rs.naprednejava.medicalmanagementsys.model.PharmaceuticalCompany;
 import rs.naprednejava.medicalmanagementsys.model.Specialization;
 import rs.naprednejava.medicalmanagementsys.model.User;
 
@@ -19,21 +20,42 @@ public class Seeder {
 	public static void main(String[] args) {
 
 		Specialization specialization1 = new Specialization(1L, "Dermatologists", "Faculty of Medicine - University of Belgrade");
-		Specialization specialization2 = new Specialization(2L, "Cardiology", "Faculty of Medicine - University of Belgrade");
-		Specialization specialization3 = new Specialization(3L, "Radiology", "Faculty of Medicine - University of Belgrade");
+		Specialization specialization2 = new Specialization(2L, "Cardiology", "Faculty of Medicine - Johns Hopkins University, USA");
+		Specialization specialization3 = new Specialization(3L, "Radiology", "Faculty of Medicine - Columbia University, USA");
+		Specialization specialization4 = new Specialization(4L, "Sports medicine", "Faculty of Medicine - University of Belgrade");
 		
 		Doctor doctor1 = new Doctor(1L, "Milos", "Vujic", "MilosVu", "milos123", "milos@gmail.com", 60, specialization3);
 		Doctor doctor2 = new Doctor(2L, "Mylah", "Mccormick", "MylahMc", "mylah123", "mylah@gmail.com", 50, specialization2);
 		Doctor doctor3 = new Doctor(3L, "Jackson", "Frame", "JacksonFr", "jackson123", "jackson@gmail.com", 20, specialization1);
-		Doctor doctor4 = new Doctor(4L, "Amanda", "Nichols", "AmandaNi", "amandaNi123", "amanda@gmail.com", 40, specialization1);
+		Doctor doctor4 = new Doctor(4L, "Jack", "Frostman", "JackFr", "jack123", "jack@gmail.com", 35, specialization1);
+		Doctor doctor5 = new Doctor(5L, "Emilia", "Vo", "EmiliaVo", "emilia123", "emilia@gmail.com", 25, specialization4);
+		Doctor doctor6 = new Doctor(6L, "Hammad", "Sanderson", "HammadSa", "hammad123", "hammad@gmail.com", 40, specialization4);
+		Doctor doctor7 = new Doctor(7L, "Lamar", "Nichols", "LamarMo", "lamar123", "lamar@gmail.com", 55, specialization4);
+		Doctor doctor8 = new Doctor(8L, "Inigo", "Ferreira", "InigoFe", "inigo123", "inigo@gmail.com", 50, specialization2);
+		Doctor doctor9 = new Doctor(9L, "Tayla", "Bradley", "TaylaBr", "tayla123", "tayla@gmail.com", 40, specialization3);
+		Doctor doctor10 = new Doctor(10L, "Harvey-Lee", "Welch", "HarveyWe", "harvey123", "harvey@gmail.com", 20, specialization1);
 		
 		Patient patient1 = new Patient(5L, "Dusan", "Gajic", "DusanGa", "dusan123", "dusan@gmail.com", "0653421231", "Penicilin", "male");
-		Patient patient2 = new Patient(6L, "Mathilda", "Farley", "MathildaFa", "mathilda123", "mathilda@gmail.com", "061322512", "Penicilin", "female");
-		Patient patient3 = new Patient(7L, "Ieuan", "Mason", "IeuanMa", "ieuan123", "ieuan@gmail.com", "065342412321", "Penicilin", "male");
-		Patient patient4 = new Patient(8L, "Ameer", "Humphrey", "AmeerHu", "ameer123", "Ameer@gmail.com", "062413215", "Penicilin", "male");
-		Patient patient5 = new Patient(9L, "Saba", "Whelan", "SabaWh", "saba123", "saba@gmail.com", "062142351", "Penicilin", "female");
+		Patient patient2 = new Patient(6L, "Mathilda", "Farley", "MathildaFa", "mathilda123", "mathilda@gmail.com", "061322512", "Aspirin", "female");
+		Patient patient3 = new Patient(7L, "Ieuan", "Mason", "IeuanMa", "ieuan123", "ieuan@gmail.com", "065342412321", "Ibuprofen", "male");
+		Patient patient4 = new Patient(8L, "Ameer", "Humphrey", "AmeerHu", "ameer123", "Ameer@gmail.com", "062413215", "Omeprazole", "male");
+		Patient patient5 = new Patient(9L, "Saba", "Whelan", "SabaWh", "saba123", "saba@gmail.com", "062142351", "Metoprolol", "female");
 		
 		User receptionist1 = new User(10L, "admin", "admin", "admin", "admin", "admin@gmail.com", "receptionist");
+		
+		PharmaceuticalCompany pharmaceuticacomany1 = new PharmaceuticalCompany("Novartis");
+		PharmaceuticalCompany pharmaceuticacomany2 = new PharmaceuticalCompany("Pfizer");
+		PharmaceuticalCompany pharmaceuticacomany3 = new PharmaceuticalCompany("Johnson & Johnson");
+		
+		
+		Medicine medicine1 = new Medicine("Amoxicillin", pharmaceuticacomany1);
+		Medicine medicine2 = new Medicine("Lisinopril", pharmaceuticacomany2);
+		Medicine medicine3 = new Medicine("Levothyroxine", pharmaceuticacomany2);
+		Medicine medicine4 = new Medicine("Metoprolol", pharmaceuticacomany2);
+		Medicine medicine5 = new Medicine("Atorvastatin", pharmaceuticacomany3);
+		Medicine medicine6 = new Medicine("Metformin", pharmaceuticacomany2);
+		Medicine medicine7 = new Medicine("Omeprazole", pharmaceuticacomany1);
+		Medicine medicine8 = new Medicine("Losartan", pharmaceuticacomany1);
 		
 		
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
@@ -43,17 +65,39 @@ public class Seeder {
 		 * 1. Transaction
 		 * */
 		session.beginTransaction();
+		
+		/* ======== Pharmaceutical Companies ======== */
+		session.save(specialization1);
+		session.save(specialization2);
+		session.save(specialization3);
+		
+		/* ======== Medicines ======== */
+		session.save(medicine1);
+		session.save(medicine2);
+		session.save(medicine3);
+		session.save(medicine4);
+		session.save(medicine5);
+		session.save(medicine6);
+		session.save(medicine7);
+		session.save(medicine8);
 	
 		/* ======== Specializations ======== */
 		session.save(specialization1);
 		session.save(specialization2);
 		session.save(specialization3);
+		session.save(specialization4);
 		
 		/* ======== Doctors ======== */
 		Long d1Id = (Long) session.save(doctor1);
 		Long d2Id = (Long) session.save(doctor2);
 		Long d3Id = (Long) session.save(doctor3);
 		Long d4Id = (Long) session.save(doctor4);
+		Long d5Id = (Long) session.save(doctor5);
+		Long d6Id = (Long) session.save(doctor6);
+		Long d7Id = (Long) session.save(doctor7);
+		Long d8Id = (Long) session.save(doctor8);
+		Long d9Id = (Long) session.save(doctor9);
+		Long d10Id = (Long) session.save(doctor10);
 		
 		/* ======== Patients ======== */
 		Long p1Id = (Long) session.save(patient1);
@@ -66,17 +110,29 @@ public class Seeder {
 		session.save(receptionist1);
 		
 		/* ======== Examinations ======== */
-		Examination examination1 = new Examination(1L, new Doctor(d1Id), new Patient(p1Id), false, false, false, new GregorianCalendar());
-		Examination examination2 = new Examination(1L, new Doctor(d1Id), new Patient(p3Id), false, false, false, new GregorianCalendar());
-		Examination examination3 = new Examination(1L, new Doctor(d2Id), new Patient(p1Id), false, false, false, new GregorianCalendar());
-		Examination examination4 = new Examination(1L, new Doctor(d2Id), new Patient(p2Id), false, false, false, new GregorianCalendar());
-		Examination examination5 = new Examination(1L, new Doctor(d2Id), new Patient(p3Id), false, false, false, new GregorianCalendar());
-		Examination examination6 = new Examination(1L, new Doctor(d3Id), new Patient(p1Id), false, false, false, new GregorianCalendar());
-		Examination examination7 = new Examination(1L, new Doctor(d3Id), new Patient(p4Id), false, false, false, new GregorianCalendar());
-		Examination examination8 = new Examination(1L, new Doctor(d3Id), new Patient(p2Id), false, false, false, new GregorianCalendar());
-		Examination examination9 = new Examination(1L, new Doctor(d3Id), new Patient(p3Id), false, false, false, new GregorianCalendar());
-		Examination examination10 = new Examination(1L, new Doctor(d3Id), new Patient(p5Id), false, false, false, new GregorianCalendar());
-		Examination examination11 = new Examination(1L, new Doctor(d4Id), new Patient(p5Id), false, false, false, new GregorianCalendar());
+		Examination examination1 = new Examination(1L, new Doctor(d1Id), new Patient(p1Id), false, false, false, 
+				new GregorianCalendar(2022, 3, 1, 9, 30));
+		Examination examination2 = new Examination(1L, new Doctor(d1Id), new Patient(p3Id), false, false, false, 
+				new GregorianCalendar(2022, 3, 1, 10, 30));
+		Examination examination3 = new Examination(1L, new Doctor(d1Id), new Patient(p2Id), false, false, false, 
+				new GregorianCalendar(2022, 3, 1, 11, 00));
+		Examination examination4 = new Examination(1L, new Doctor(d1Id), new Patient(p4Id), false, false, false, 
+				new GregorianCalendar(2022, 3, 1, 12, 30));
+		Examination examination5 = new Examination(1L, new Doctor(d1Id), new Patient(p5Id), false, false, false, 
+				new GregorianCalendar(2022, 3, 1, 13, 00));
+		Examination examination6 = new Examination(1L, new Doctor(d1Id), new Patient(p1Id), false, false, false, 
+				new GregorianCalendar(2022, 3, 1, 13, 30));
+		Examination examination7 = new Examination(1L, new Doctor(d1Id), new Patient(p4Id), false, false, false, 
+				new GregorianCalendar(2022, 3, 2, 10, 30));
+		Examination examination8 = new Examination(1L, new Doctor(d1Id), new Patient(p2Id), false, false, false, 
+				new GregorianCalendar(2022, 3, 2, 9, 30));
+		Examination examination9 = new Examination(1L, new Doctor(d1Id), new Patient(p3Id), false, false, false, 
+				new GregorianCalendar(2022, 3, 2, 12, 30));
+		Examination examination10 = new Examination(1L, new Doctor(d1Id), new Patient(p5Id), false, false, false, 
+				new GregorianCalendar(2022, 3, 2, 15, 00));
+		Examination examination11 = new Examination(1L, new Doctor(d1Id), new Patient(p5Id), false, false, false, 
+				new GregorianCalendar(2022, 3, 2, 16, 00));
+		
 		
 		session.save(examination1);
 		session.save(examination2);
@@ -92,14 +148,6 @@ public class Seeder {
 		
 		
 		session.getTransaction().commit();
-		
-		/* 2. Transaction */
-		
-	
-//		session.beginTransaction();
-//		
-//		
-//		session.getTransaction().commit();
 		
 	}
 
