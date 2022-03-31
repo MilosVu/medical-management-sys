@@ -23,8 +23,6 @@ public class PrescriptionMedicine {
 	private Long prescriptionMedicineId;
 	
 	
-	
-	
 	@ManyToOne
     @MapsId("prescriptionId")
 	private Prescription prescription;
@@ -63,12 +61,19 @@ public class PrescriptionMedicine {
 
 	public PrescriptionMedicine(Long prescriptionMedicineId, Prescription prescription, Medicine medicine) {
 		super();
-		this.prescriptionMedicineId = prescriptionMedicineId;
 		
+		this.prescriptionMedicineId = prescriptionMedicineId;
 		this.prescription = prescription;
 		this.medicine = medicine;
 	}
 
+	public PrescriptionMedicine(Prescription prescription, Medicine medicine) {
+		super();
+		
+		this.prescription = prescription;
+		this.medicine = medicine;
+	}
+	
 	public PrescriptionMedicine() {
 		super();
 		// TODO Auto-generated constructor stub

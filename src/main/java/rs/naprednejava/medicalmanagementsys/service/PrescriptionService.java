@@ -1,5 +1,6 @@
 package rs.naprednejava.medicalmanagementsys.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import rs.naprednejava.medicalmanagementsys.exception.ResourceNotFoundException;
 import rs.naprednejava.medicalmanagementsys.model.Examination;
 import rs.naprednejava.medicalmanagementsys.model.Medicine;
 import rs.naprednejava.medicalmanagementsys.model.Prescription;
+import rs.naprednejava.medicalmanagementsys.model.PrescriptionMedicine;
 import rs.naprednejava.medicalmanagementsys.model.PrescriptionsMedicsRequestBody;
 import rs.naprednejava.medicalmanagementsys.repository.ExaminationRepository;
 import rs.naprednejava.medicalmanagementsys.repository.PrescriptionMedicineRepository;
@@ -41,17 +43,29 @@ public class PrescriptionService {
     
    	public Prescription createPrescription(PrescriptionsMedicsRequestBody request) {
    		System.out.println(request);
-   		return null;
    		
-//   		prescription.setExaminationId(prescription.getExamination().getExaminationId());
+//   		request.getPrescription().setExaminationId(request.getPrescription().getExamination().getExaminationId());
+
+   		Examination examination = (request.getPrescription()).getExamination();
+   		examination.setStatusCompleted(true);
    		
-//   		
-//   		Examination examination= prescription.getExamination();
-//   		examination.setStatusCompleted(true);
-//   		
-//   		examinationRepository.save(examination);
-// 		
-//   		return prescriptionRepository.save(prescription);
+   		examinationRepository.save(examination);
+   		
+   		request.getPrescription().setPrescriptionId(32);
+   		
+   		Prescription p = (Prescription) prescriptionRepository.save(request.getPrescription());
+   		
+   		List<PrescriptionMedicine> listPrescriptionMedicines = new ArrayList<>();
+   		
+   		for (Medicine m : request.getMedicines()) {
+			PrescriptionMedicine prescriptionMedicine = new PrescriptionMedicine(p, m);
+			listPrescriptionMedicines.add(prescriptionMedicine);
+			
+		}
+   		
+   		prescriptionMedicineRepository.saveAll(listPrescriptionMedicines);
+
+   		return p;
    	}
    	
   
