@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import rs.naprednejava.medicalmanagementsys.exception.ResourceNotFoundException;
+import rs.naprednejava.medicalmanagementsys.model.Examination;
 import rs.naprednejava.medicalmanagementsys.model.Prescription;
+import rs.naprednejava.medicalmanagementsys.repository.ExaminationRepository;
+import rs.naprednejava.medicalmanagementsys.repository.PrescriptionMedicineRepository;
 import rs.naprednejava.medicalmanagementsys.repository.PrescriptionRepository;
 
 @Service
@@ -24,6 +27,10 @@ public class PrescriptionService {
 	
 	@Autowired
     private PrescriptionRepository prescriptionRepository;
+	@Autowired
+    private ExaminationRepository examinationRepository;
+	@Autowired
+    private PrescriptionMedicineRepository prescriptionMedicineRepository;
    
     public List<Prescription> getAllPrescriptions(){
         return prescriptionRepository.findAll();
@@ -32,6 +39,11 @@ public class PrescriptionService {
     
    	public Prescription createPrescription(Prescription prescription) {
    		prescription.setExaminationId(prescription.getExamination().getExaminationId());
+   		
+   		Examination examination= prescription.getExamination();
+   		examination.setStatus(true);
+   		
+   		examinationRepository.save(examination);
  		
    		return prescriptionRepository.save(prescription);
    	}
