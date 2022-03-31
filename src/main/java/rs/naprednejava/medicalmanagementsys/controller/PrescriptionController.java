@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import rs.naprednejava.medicalmanagementsys.exception.ResourceNotFoundException;
+import rs.naprednejava.medicalmanagementsys.model.Medicine;
 import rs.naprednejava.medicalmanagementsys.model.PharmaceuticalCompany;
 import rs.naprednejava.medicalmanagementsys.model.Prescription;
 import rs.naprednejava.medicalmanagementsys.repository.PharmaceuticalCompanyRepository;

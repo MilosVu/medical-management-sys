@@ -28,10 +28,12 @@ public class PrescriptionMedicine {
 	@ManyToOne
     @MapsId("prescriptionId")
 	private Prescription prescription;
-
+	
     @ManyToOne
     @MapsId("medicineId")
     private Medicine medicine;
+    
+    
 
 	public Long getPrescriptionMedicineId() {
 		return prescriptionMedicineId;

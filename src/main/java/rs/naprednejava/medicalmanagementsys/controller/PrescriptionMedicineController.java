@@ -29,31 +29,31 @@ public class PrescriptionMedicineController {
     private PrescriptionMedicineService prescriptionMedicineService;
     
     //Get all PrescriptionMedicineService
-    @GetMapping("/prescripiton-medicines")
+    @GetMapping("/prescription-medicines")
     public List<PrescriptionMedicine> getAllPrescriptionMedicines(){
         return prescriptionMedicineService.getAllPrescriptionMedicines();
     }
     
     //Create PrescriptionMedicineService
-   	@PostMapping("/prescripiton-medicines")
+   	@PostMapping("/prescription-medicines")
    	public PrescriptionMedicine createPrescriptionMedicine(@RequestBody PrescriptionMedicine prescriptionMedicine) {
    		return prescriptionMedicineService.createPrescriptionMedicine(prescriptionMedicine);
    	}
    	
    	//Get PrescriptionMedicineService by id
-   	@GetMapping("/prescripiton-medicines/{id}")
+   	@GetMapping("/prescription-medicines/{id}")
    	public ResponseEntity<PrescriptionMedicine> getPrescriptionMedicineById(@PathVariable Long id) {
    		return prescriptionMedicineService.getPrescriptionMedicineById(id);
    	}
    	
    	//Update PrescriptionMedicineService
-   	@PutMapping("/prescripiton-medicines/{id}")
+   	@PutMapping("/prescription-medicines/{id}")
    	public ResponseEntity<PrescriptionMedicine> updatePrescriptionMedicine(@PathVariable Long id, @RequestBody PrescriptionMedicine prescriptionMedicineDetails){
    		return prescriptionMedicineService.updatePrescriptionMedicine(id, prescriptionMedicineDetails);
    	}
    	
    	//Delete PrescriptionMedicineService
-   	@DeleteMapping("/prescripiton-medicines/{id}")
+   	@DeleteMapping("/prescription-medicines/{id}")
    	public ResponseEntity<Map<String, Boolean>> deletePrescriptionMedicine(@PathVariable Long id){
    		return prescriptionMedicineService.deletePrescriptionMedicine(id);
    	}

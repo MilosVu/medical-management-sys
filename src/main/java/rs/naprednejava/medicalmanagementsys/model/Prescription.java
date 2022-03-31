@@ -1,5 +1,7 @@
 package rs.naprednejava.medicalmanagementsys.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +27,7 @@ public class Prescription {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="prescriptionId")
+	@Column(name="prescription_id")
 	private long prescriptionId;
 	
 	@Column(name = "examination_id")
@@ -35,6 +37,8 @@ public class Prescription {
 	public String disease;
 	
 	public String description;
+	
+
 	
 	public Prescription(Examination examination, long prescriptionId, Long examinationId, String disease,
 			String description) {

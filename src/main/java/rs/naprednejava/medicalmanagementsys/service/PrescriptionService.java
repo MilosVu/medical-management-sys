@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import rs.naprednejava.medicalmanagementsys.exception.ResourceNotFoundException;
 import rs.naprednejava.medicalmanagementsys.model.Examination;
+import rs.naprednejava.medicalmanagementsys.model.Medicine;
 import rs.naprednejava.medicalmanagementsys.model.Prescription;
 import rs.naprednejava.medicalmanagementsys.repository.ExaminationRepository;
 import rs.naprednejava.medicalmanagementsys.repository.PrescriptionMedicineRepository;
@@ -40,8 +41,9 @@ public class PrescriptionService {
    	public Prescription createPrescription(Prescription prescription) {
    		prescription.setExaminationId(prescription.getExamination().getExaminationId());
    		
+   		
    		Examination examination= prescription.getExamination();
-   		examination.setStatus(true);
+   		examination.setStatusCompleted(true);
    		
    		examinationRepository.save(examination);
  		

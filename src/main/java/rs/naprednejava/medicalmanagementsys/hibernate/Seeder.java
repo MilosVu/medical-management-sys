@@ -110,27 +110,27 @@ public class Seeder {
 		session.save(receptionist1);
 		
 		/* ======== Examinations ======== */
-		Examination examination1 = new Examination(1L, new Doctor(d1Id), new Patient(p1Id), false, false, false, 
+		Examination examination1 = new Examination(1L, new Doctor(d1Id), new Patient(p1Id), false, 
 				new GregorianCalendar(2022, 3, 1, 9, 30));
-		Examination examination2 = new Examination(1L, new Doctor(d1Id), new Patient(p3Id), false, false, false, 
+		Examination examination2 = new Examination(1L, new Doctor(d1Id), new Patient(p3Id), false, 
 				new GregorianCalendar(2022, 3, 1, 10, 30));
-		Examination examination3 = new Examination(1L, new Doctor(d1Id), new Patient(p2Id), false, false, false, 
+		Examination examination3 = new Examination(1L, new Doctor(d1Id), new Patient(p2Id), false, 
 				new GregorianCalendar(2022, 3, 1, 11, 00));
-		Examination examination4 = new Examination(1L, new Doctor(d1Id), new Patient(p4Id), false, false, false, 
+		Examination examination4 = new Examination(1L, new Doctor(d1Id), new Patient(p4Id), false, 
 				new GregorianCalendar(2022, 3, 1, 12, 30));
-		Examination examination5 = new Examination(1L, new Doctor(d1Id), new Patient(p5Id), false, false, false, 
+		Examination examination5 = new Examination(1L, new Doctor(d1Id), new Patient(p5Id), false, 
 				new GregorianCalendar(2022, 3, 1, 13, 00));
-		Examination examination6 = new Examination(1L, new Doctor(d1Id), new Patient(p1Id), false, false, false, 
+		Examination examination6 = new Examination(1L, new Doctor(d1Id), new Patient(p1Id), false, 
 				new GregorianCalendar(2022, 3, 1, 13, 30));
-		Examination examination7 = new Examination(1L, new Doctor(d1Id), new Patient(p4Id), false, false, false, 
+		Examination examination7 = new Examination(1L, new Doctor(d1Id), new Patient(p4Id), false, 
 				new GregorianCalendar(2022, 3, 2, 10, 30));
-		Examination examination8 = new Examination(1L, new Doctor(d1Id), new Patient(p2Id), false, false, false, 
+		Examination examination8 = new Examination(1L, new Doctor(d1Id), new Patient(p2Id), false, 
 				new GregorianCalendar(2022, 3, 2, 9, 30));
-		Examination examination9 = new Examination(1L, new Doctor(d1Id), new Patient(p3Id), false, false, false, 
+		Examination examination9 = new Examination(1L, new Doctor(d1Id), new Patient(p3Id), false, 
 				new GregorianCalendar(2022, 3, 2, 12, 30));
-		Examination examination10 = new Examination(1L, new Doctor(d1Id), new Patient(p5Id), false, false, false, 
+		Examination examination10 = new Examination(1L, new Doctor(d1Id), new Patient(p5Id), false, 
 				new GregorianCalendar(2022, 3, 2, 15, 00));
-		Examination examination11 = new Examination(1L, new Doctor(d1Id), new Patient(p5Id), false, false, false, 
+		Examination examination11 = new Examination(1L, new Doctor(d1Id), new Patient(p5Id), false, 
 				new GregorianCalendar(2022, 3, 2, 16, 00));
 		
 		
