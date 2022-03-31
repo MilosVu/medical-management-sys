@@ -20,6 +20,7 @@ import rs.naprednejava.medicalmanagementsys.exception.ResourceNotFoundException;
 import rs.naprednejava.medicalmanagementsys.model.Medicine;
 import rs.naprednejava.medicalmanagementsys.model.PharmaceuticalCompany;
 import rs.naprednejava.medicalmanagementsys.model.Prescription;
+import rs.naprednejava.medicalmanagementsys.model.PrescriptionsMedicsRequestBody;
 import rs.naprednejava.medicalmanagementsys.repository.PharmaceuticalCompanyRepository;
 import rs.naprednejava.medicalmanagementsys.repository.PrescriptionRepository;
 import rs.naprednejava.medicalmanagementsys.service.PrescriptionService;
@@ -41,8 +42,8 @@ public class PrescriptionController {
     
     //Create prescription
    	@PostMapping("/prescriptions")
-   	public Prescription createPrescription(@RequestBody Prescription prescription) {
-   		return prescriptionService.createPrescription(prescription);
+   	public Prescription createPrescription(@RequestBody PrescriptionsMedicsRequestBody request) {
+   		return prescriptionService.createPrescription(request);
    	}
    	
    	//Get prescription by id
@@ -63,3 +64,4 @@ public class PrescriptionController {
    		return prescriptionService.deletePrescription(id);
    	}
 }
+

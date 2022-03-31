@@ -63,7 +63,11 @@ public class Medicine {
 
 	public Medicine() {
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Medicine [medicineid=" + medicineid + ", name=" + name + ", pharmaceuticalCompany="
+				+ pharmaceuticalCompany + "]";
+	}
 	
 }

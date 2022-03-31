@@ -18,6 +18,7 @@ import rs.naprednejava.medicalmanagementsys.exception.ResourceNotFoundException;
 import rs.naprednejava.medicalmanagementsys.model.Examination;
 import rs.naprednejava.medicalmanagementsys.model.Medicine;
 import rs.naprednejava.medicalmanagementsys.model.Prescription;
+import rs.naprednejava.medicalmanagementsys.model.PrescriptionsMedicsRequestBody;
 import rs.naprednejava.medicalmanagementsys.repository.ExaminationRepository;
 import rs.naprednejava.medicalmanagementsys.repository.PrescriptionMedicineRepository;
 import rs.naprednejava.medicalmanagementsys.repository.PrescriptionRepository;
@@ -38,16 +39,19 @@ public class PrescriptionService {
     }
     
     
-   	public Prescription createPrescription(Prescription prescription) {
-   		prescription.setExaminationId(prescription.getExamination().getExaminationId());
+   	public Prescription createPrescription(PrescriptionsMedicsRequestBody request) {
+   		System.out.println(request);
+   		return null;
    		
+//   		prescription.setExaminationId(prescription.getExamination().getExaminationId());
    		
-   		Examination examination= prescription.getExamination();
-   		examination.setStatusCompleted(true);
-   		
-   		examinationRepository.save(examination);
- 		
-   		return prescriptionRepository.save(prescription);
+//   		
+//   		Examination examination= prescription.getExamination();
+//   		examination.setStatusCompleted(true);
+//   		
+//   		examinationRepository.save(examination);
+// 		
+//   		return prescriptionRepository.save(prescription);
    	}
    	
   

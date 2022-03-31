@@ -105,7 +105,11 @@ public class Prescription {
 	public Prescription() {
 		super();
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Prescription [examination=" + examination + ", prescriptionId=" + prescriptionId + ", examinationId="
+				+ examinationId + ", disease=" + disease + ", description=" + description + "]";
+	}
+
 }
