@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import rs.naprednejava.medicalmanagementsys.exception.ResourceNotFoundException;
 import rs.naprednejava.medicalmanagementsys.model.PharmaceuticalCompany;
 import rs.naprednejava.medicalmanagementsys.repository.PharmaceuticalCompanyRepository;
+import rs.naprednejava.medicalmanagementsys.service.PharmaceuticalCompanyService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -26,52 +27,36 @@ import rs.naprednejava.medicalmanagementsys.repository.PharmaceuticalCompanyRepo
 public class PharmaceuticalCompanyController {
 
 	@Autowired
-    private PharmaceuticalCompanyRepository pharmaceuticalCompanyRepository;
+    private PharmaceuticalCompanyService pharmaceuticalCompanyService;
     
     //Get all pharmaceutical companies
     @GetMapping("/pharmaceutical-company")
     public List<PharmaceuticalCompany> getAllPharmaceuticalCompanies(){
-        return pharmaceuticalCompanyRepository.findAll();
+        return pharmaceuticalCompanyService.getAllPharmaceuticalCompanies();
     }
     
     //Create pharmaceutical company
    	@PostMapping("/pharmaceutical-company")
    	public PharmaceuticalCompany createPharmaceuticalCompany(@RequestBody PharmaceuticalCompany pharmaceuticalCompany) {
-   		return pharmaceuticalCompanyRepository.save(pharmaceuticalCompany);
+   		return pharmaceuticalCompanyService.createPharmaceuticalCompany(pharmaceuticalCompany);
    	}
    	
    	//Get pharmaceutical company by id
    	@GetMapping("/pharmaceutical-company/{id}")
-   	public ResponseEntity<PharmaceuticalCompany> getEmployeeById(@PathVariable Long id) {
-   		PharmaceuticalCompany pharmaceuticalCompany = pharmaceuticalCompanyRepository.findById(id)
-   				.orElseThrow(() -> new ResourceNotFoundException("PharmaceuticalCompany does not exist with id :" + id));
-   		return ResponseEntity.ok(pharmaceuticalCompany);
+   	public ResponseEntity<PharmaceuticalCompany> getCompanyById(@PathVariable Long id) {
+   		return pharmaceuticalCompanyService.getCompanyById(id);
    	}
    	
    	//Update pharmaceutical company
    	@PutMapping("/pharmaceutical-company/{id}")
    	public ResponseEntity<PharmaceuticalCompany> updatePharmaceuticalCompany(@PathVariable Long id, @RequestBody PharmaceuticalCompany pharmaceuticalCompanyDetails){
-   		PharmaceuticalCompany pharmaceuticalCompany = pharmaceuticalCompanyRepository.findById(id)
-   				.orElseThrow(() -> new ResourceNotFoundException("PharmaceuticalCompany does not exist with id :" + id));
-   		
-   		
-   		pharmaceuticalCompany.setName(pharmaceuticalCompanyDetails.getName());
-
-   		
-   		PharmaceuticalCompany updatedPharmaceuticalCompany = pharmaceuticalCompanyRepository.save(pharmaceuticalCompany);
-   		return ResponseEntity.ok(updatedPharmaceuticalCompany);
+   		return pharmaceuticalCompanyService.updatePharmaceuticalCompany(id, pharmaceuticalCompanyDetails);
    	}
    	
    	//Delete pharmaceutical company
    	@DeleteMapping("/pharmaceutical-company/{id}")
    	public ResponseEntity<Map<String, Boolean>> deletePharmaceuticalCompany(@PathVariable Long id){
-   		PharmaceuticalCompany pharmaceuticalCompany = pharmaceuticalCompanyRepository.findById(id)
-   				.orElseThrow(() -> new ResourceNotFoundException("PharmaceuticalCompany does not exist with id :" + id));
-   		
-   		pharmaceuticalCompanyRepository.delete(pharmaceuticalCompany);
-   		Map<String, Boolean> response = new HashMap<>();
-   		response.put("deleted", Boolean.TRUE);
-   		return ResponseEntity.ok(response);
+   		return pharmaceuticalCompanyService.deletePharmaceuticalCompany(id);
    	}
 	
 }

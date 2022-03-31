@@ -21,6 +21,7 @@ import rs.naprednejava.medicalmanagementsys.model.Medicine;
 import rs.naprednejava.medicalmanagementsys.model.Patient;
 import rs.naprednejava.medicalmanagementsys.model.User;
 import rs.naprednejava.medicalmanagementsys.repository.DoctorRepository;
+import rs.naprednejava.medicalmanagementsys.service.DoctorService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -28,28 +29,25 @@ import rs.naprednejava.medicalmanagementsys.repository.DoctorRepository;
 public class DoctorController {
 
 	@Autowired
-    private DoctorRepository doctorRepository;
+    private DoctorService doctorService;
     
     //Get all users
     @GetMapping("/doctors")
     public List<Doctor> getAllDoctors(){
-        return doctorRepository.findAll();
+        return doctorService.getAllDoctors();
     }
     
     
     @PostMapping("/doctors")
  	public Doctor createDoctor(@RequestBody Doctor doctor) {
-    	doctor.setUserRole("doctor");
- 		return doctorRepository.save(doctor);
+    	return doctorService.createDoctor(doctor);
  	}
     
     
     //Get doctor by id
     @GetMapping("/doctors/{id}")
  	public ResponseEntity<Doctor> getUsersById(@PathVariable String id) {
-    	Doctor doctor = doctorRepository.findById(Long.parseLong(id))
- 				.orElseThrow(() -> new ResourceNotFoundException("Doctor does not exist with id :" + id));
- 		return ResponseEntity.ok(doctor);
+    	return doctorService.getUsersById(id);
  	}
 	
 }

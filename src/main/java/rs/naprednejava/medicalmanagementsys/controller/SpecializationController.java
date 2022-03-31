@@ -20,6 +20,7 @@ import rs.naprednejava.medicalmanagementsys.model.Medicine;
 import rs.naprednejava.medicalmanagementsys.model.PharmaceuticalCompany;
 import rs.naprednejava.medicalmanagementsys.model.Specialization;
 import rs.naprednejava.medicalmanagementsys.repository.SpecializationRepository;
+import rs.naprednejava.medicalmanagementsys.service.SpecializationService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -27,39 +28,31 @@ import rs.naprednejava.medicalmanagementsys.repository.SpecializationRepository;
 public class SpecializationController {
 
 	@Autowired
-    private SpecializationRepository specializationRepository;
+    private SpecializationService specializationService;
     
     //Get all specializations
     @GetMapping("/specializations")
     public List<Specialization> getAllSpecializations(){
-        return specializationRepository.findAll();
+        return specializationService.getAllSpecializations();
     }
     
 	//Get specialization by id
    	@GetMapping("/specializations/{id}")
    	public ResponseEntity<Specialization> getSpecializationById(@PathVariable Long id) {
-   		Specialization specialization = specializationRepository.findById(id)
-   				.orElseThrow(() -> new ResourceNotFoundException("Specialization does not exist with id :" + id));
-   		return ResponseEntity.ok(specialization);
+   		return specializationService.getSpecializationById(id);
    	}
    	
   //Delete specializations
    	@DeleteMapping("/specializations/{id}")
    	public ResponseEntity<Map<String, Boolean>> deleteSpecialization(@PathVariable Long id){
-   		Specialization specialization = specializationRepository.findById(id)
-   				.orElseThrow(() -> new ResourceNotFoundException("Specialization does not exist with id :" + id));
-   		
-   		specializationRepository.delete(specialization);
-   		Map<String, Boolean> response = new HashMap<>();
-   		response.put("deleted", Boolean.TRUE);
-   		return ResponseEntity.ok(response);
+   		return specializationService.deleteSpecialization(id);
    	}
    	
   //Create specialization
    	@PostMapping("/specializations")
    	public Specialization createSpecialization(@RequestBody Specialization specialization) {
    		
-   		return specializationRepository.save(specialization);
+   		return specializationService.createSpecialization(specialization);
    	}
 	
 }

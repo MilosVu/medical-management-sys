@@ -21,6 +21,7 @@ import rs.naprednejava.medicalmanagementsys.model.PharmaceuticalCompany;
 import rs.naprednejava.medicalmanagementsys.model.Prescription;
 import rs.naprednejava.medicalmanagementsys.repository.PharmaceuticalCompanyRepository;
 import rs.naprednejava.medicalmanagementsys.repository.PrescriptionRepository;
+import rs.naprednejava.medicalmanagementsys.service.PrescriptionService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -29,51 +30,35 @@ public class PrescriptionController {
 
 	
 	@Autowired
-    private PrescriptionRepository prescriptionRepository;
+    private PrescriptionService prescriptionService;
     
     //Get all prescriptions
     @GetMapping("/prescriptions")
     public List<Prescription> getAllPrescriptions(){
-        return prescriptionRepository.findAll();
+        return prescriptionService.getAllPrescriptions();
     }
     
     //Create prescription
    	@PostMapping("/prescriptions")
    	public Prescription createPrescription(@RequestBody Prescription prescription) {
-   		return prescriptionRepository.save(prescription);
+   		return prescriptionService.createPrescription(prescription);
    	}
    	
    	//Get prescription by id
    	@GetMapping("/prescriptions/{id}")
    	public ResponseEntity<Prescription> getPrescriptionId(@PathVariable Long id) {
-   		Prescription prescription = prescriptionRepository.findById(id)
-   				.orElseThrow(() -> new ResourceNotFoundException("Prescription does not exist with id :" + id));
-   		return ResponseEntity.ok(prescription);
+   		return prescriptionService.getPrescriptionId(id);
    	}
    	
    	//Update Prescription 
    	@PutMapping("/prescriptions/{id}")
    	public ResponseEntity<Prescription> updatePrescription(@PathVariable Long id, @RequestBody Prescription prescriptionDetails){
-   		Prescription prescription = prescriptionRepository.findById(id)
-   				.orElseThrow(() -> new ResourceNotFoundException("Prescription does not exist with id :" + id));
-   		
-   		
-   		prescription.setDisease(prescriptionDetails.getDisease());
-
-   		
-   		Prescription updatedPrescription = prescriptionRepository.save(prescription);
-   		return ResponseEntity.ok(updatedPrescription);
+   		return prescriptionService.updatePrescription(id, prescriptionDetails);
    	}
    	
    	//Delete prescription
    	@DeleteMapping("/prescriptions/{id}")
    	public ResponseEntity<Map<String, Boolean>> deletePrescription(@PathVariable Long id){
-   		Prescription prescription = prescriptionRepository.findById(id)
-   				.orElseThrow(() -> new ResourceNotFoundException("Prescription does not exist with id :" + id));
-   		
-   		prescriptionRepository.delete(prescription);
-   		Map<String, Boolean> response = new HashMap<>();
-   		response.put("deleted", Boolean.TRUE);
-   		return ResponseEntity.ok(response);
+   		return prescriptionService.deletePrescription(id);
    	}
 }
