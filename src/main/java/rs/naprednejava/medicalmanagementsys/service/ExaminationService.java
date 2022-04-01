@@ -52,20 +52,23 @@ public class ExaminationService {
  	}
  	
  	
- 	public ResponseEntity<Examination> getEmployeeById(Long id) {
+ 	public ResponseEntity<Examination> getExaminationById(Long id) {
  		Examination examination = examinationRepository.findById(id)
  				.orElseThrow(() -> new ResourceNotFoundException("Examination does not exist with parameters"));
  		return ResponseEntity.ok(examination);
  	}
  	
- 
- 	 	public ResponseEntity<Map<String, Boolean>> deleteExamination(Long id){
- 	 		Examination examination = examinationRepository.findById(id)
- 	 				.orElseThrow(() -> new ResourceNotFoundException("Examination does not exist with id :" + id));
+ 	public List<Examination> getCompletedExaminations() {
+ 		return examinationRepository.findByStatusCompleted(true);
+ 	}
+
+ 	public ResponseEntity<Map<String, Boolean>> deleteExamination(Long id){
+ 		Examination examination = examinationRepository.findById(id)
+ 				.orElseThrow(() -> new ResourceNotFoundException("Examination does not exist with id :" + id));
  	 		
- 	 		examinationRepository.delete(examination);
- 	 		Map<String, Boolean> response = new HashMap<>();
- 	 		response.put("deleted", Boolean.TRUE);
- 	 		return ResponseEntity.ok(response);
- 	 	}
+ 	 	examinationRepository.delete(examination);
+ 	 	Map<String, Boolean> response = new HashMap<>();
+ 	 	response.put("deleted", Boolean.TRUE);
+ 	 	return ResponseEntity.ok(response);
+ 	}
 }

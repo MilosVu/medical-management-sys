@@ -43,29 +43,28 @@ public class PrescriptionService {
     
    	public Prescription createPrescription(PrescriptionsMedicsRequestBody request) {
    		System.out.println(request);
-   		
-//   		request.getPrescription().setExaminationId(request.getPrescription().getExamination().getExaminationId());
 
-   		Examination examination = (request.getPrescription()).getExamination();
-   		examination.setStatusCompleted(true);
-   		
-   		examinationRepository.save(examination);
-   		
-   		request.getPrescription().setPrescriptionId(32);
-   		
-   		Prescription p = (Prescription) prescriptionRepository.save(request.getPrescription());
-   		
-   		List<PrescriptionMedicine> listPrescriptionMedicines = new ArrayList<>();
-   		
-   		for (Medicine m : request.getMedicines()) {
-			PrescriptionMedicine prescriptionMedicine = new PrescriptionMedicine(p, m);
-			listPrescriptionMedicines.add(prescriptionMedicine);
-			
-		}
-   		
-   		prescriptionMedicineRepository.saveAll(listPrescriptionMedicines);
-
-   		return p;
+//   		Examination examination = (request.getPrescription()).getExamination();
+//   		examination.setStatusCompleted(true);
+//   		
+//   		examinationRepository.save(examination);
+//   		
+//   		request.getPrescription().setPrescriptionId(32);
+//   		
+//   		Prescription p = (Prescription) prescriptionRepository.save(request.getPrescription());
+//   		
+//   		List<PrescriptionMedicine> listPrescriptionMedicines = new ArrayList<>();
+//   		
+//   		for (Medicine m : request.getMedicines()) {
+//			PrescriptionMedicine prescriptionMedicine = new PrescriptionMedicine(p.getExaminationId(), m.getMedicineid() ,p, m);
+//			listPrescriptionMedicines.add(prescriptionMedicine);
+//			
+//		}
+//   		
+//   		prescriptionMedicineRepository.saveAll(listPrescriptionMedicines);
+//
+//   		return p;
+   		return null;
    	}
    	
   

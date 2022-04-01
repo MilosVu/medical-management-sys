@@ -15,5 +15,7 @@ public interface ExaminationRepository extends JpaRepository<Examination, Long>{
 	List<Examination> findByDoctor(Doctor doctor);
 
 	List<Examination> findByPatient(Patient p);
+	
+	List<Examination> findByStatusCompleted(boolean statusCompleted);
 
 }

@@ -18,37 +18,22 @@ import javax.persistence.Table;
 @Table(name = "prescription")
 public class Prescription {
 
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="prescription_id")
+	private long prescriptionId;
 	
 	@OneToOne	
 	@JoinColumn(name="examination_id", insertable = false, updatable = false)
 	@MapsId("examinationId")
 	private Examination examination;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="prescription_id")
-	private long prescriptionId;
-	
 	@Column(name = "examination_id")
 	private Long examinationId;
 
-	
 	public String disease;
 	
 	public String description;
-	
-
-	
-	public Prescription(Examination examination, long prescriptionId, Long examinationId, String disease,
-			String description) {
-		super();
-		this.examination = examination;
-		this.prescriptionId = prescriptionId;
-		this.examinationId = examinationId;
-		this.disease = disease;
-		this.description = description;
-	}
 
 	public Long getExaminationId() {
 		return examinationId;
@@ -57,10 +42,6 @@ public class Prescription {
 	public void setExaminationId(Long examinationId) {
 		this.examinationId = examinationId;
 	}
-
-	
-
-	
 
 	public String getDescription() {
 		return description;
@@ -94,12 +75,24 @@ public class Prescription {
 		this.disease = disease;
 	}
 
-	public Prescription(Examination examination, long prescriptionId, String disease) {
+
+	public Prescription(Examination examination, Long examinationId, String disease, String description) {
 		super();
-		
+
+		this.examination = examination;
+		this.examinationId = examinationId;
+		this.disease = disease;
+		this.description = description;
+	}
+	
+	public Prescription(Examination examination, long prescriptionId, Long examinationId, String disease,
+			String description) {
+		super();
 		this.examination = examination;
 		this.prescriptionId = prescriptionId;
+		this.examinationId = examinationId;
 		this.disease = disease;
+		this.description = description;
 	}
 
 	public Prescription() {

@@ -20,6 +20,7 @@
 		<mapping class="rs.naprednejava.medicalmanagementsys.model.Specialization"/>
     	<mapping class="rs.naprednejava.medicalmanagementsys.model.Examination"/>
     	<mapping class="rs.naprednejava.medicalmanagementsys.model.Prescription"/>
+    	<mapping class="rs.naprednejava.medicalmanagementsys.model.PrescriptionMedicine"/>
     </session-factory>  
   
 </hibernate-configuration>  

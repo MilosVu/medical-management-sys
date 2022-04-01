@@ -40,8 +40,6 @@ public class Examination{
     @Column(name = "status_completed")
     private boolean statusCompleted;
     
-    
-
     @Column(name = "date_of_examination")
     private GregorianCalendar dateOfExamination;
     

@@ -12,6 +12,9 @@ import rs.naprednejava.medicalmanagementsys.model.Examination;
 import rs.naprednejava.medicalmanagementsys.model.Medicine;
 import rs.naprednejava.medicalmanagementsys.model.Patient;
 import rs.naprednejava.medicalmanagementsys.model.PharmaceuticalCompany;
+import rs.naprednejava.medicalmanagementsys.model.Prescription;
+import rs.naprednejava.medicalmanagementsys.model.PrescriptionMedicine;
+import rs.naprednejava.medicalmanagementsys.model.PrescriptionMedicineId;
 import rs.naprednejava.medicalmanagementsys.model.Specialization;
 import rs.naprednejava.medicalmanagementsys.model.User;
 
@@ -57,7 +60,6 @@ public class Seeder {
 		Medicine medicine7 = new Medicine("Omeprazole", pharmaceuticacomany1);
 		Medicine medicine8 = new Medicine("Losartan", pharmaceuticacomany1);
 		
-		
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		
@@ -72,14 +74,14 @@ public class Seeder {
 		session.save(specialization3);
 		
 		/* ======== Medicines ======== */
-		session.save(medicine1);
-		session.save(medicine2);
-		session.save(medicine3);
-		session.save(medicine4);
-		session.save(medicine5);
-		session.save(medicine6);
-		session.save(medicine7);
-		session.save(medicine8);
+		Long medicine1Id = (Long) session.save(medicine1);
+		Long medicine2Id = (Long) session.save(medicine2);
+		Long medicine3Id = (Long) session.save(medicine3);
+		Long medicine4Id = (Long) session.save(medicine4);
+		Long medicine5Id = (Long) session.save(medicine5);
+		Long medicine6Id = (Long) session.save(medicine6);
+		Long medicine7Id = (Long) session.save(medicine7);
+		Long medicine8Id = (Long) session.save(medicine8);
 	
 		/* ======== Specializations ======== */
 		session.save(specialization1);
@@ -134,8 +136,8 @@ public class Seeder {
 				new GregorianCalendar(2022, 3, 2, 16, 00));
 		
 		
-		session.save(examination1);
-		session.save(examination2);
+		Long exa1Id = (Long) session.save(examination1);
+		Long exa2Id = (Long) session.save(examination2);
 		session.save(examination3);
 		session.save(examination4);
 		session.save(examination5);
@@ -146,6 +148,20 @@ public class Seeder {
 		session.save(examination10);
 		session.save(examination11);
 		
+		
+		Prescription prescription1 = new Prescription(examination1, exa1Id, "bolest1", "gotov si nema ti spasa");
+		Prescription prescription2 = new Prescription(examination2, exa2Id, "bolest2", "gotov si nema ti spasa ponovo");
+		
+		session.save(prescription1);
+		session.save(prescription2);
+		
+		PrescriptionMedicine prescriptionMedicine1 = new PrescriptionMedicine(new PrescriptionMedicineId(prescription1, medicine1));
+		PrescriptionMedicine prescriptionMedicine2 = new PrescriptionMedicine(new PrescriptionMedicineId(prescription1, medicine2));
+		PrescriptionMedicine prescriptionMedicine3 = new PrescriptionMedicine(new PrescriptionMedicineId(prescription2, medicine5));
+		
+		session.save(prescriptionMedicine1);
+		session.save(prescriptionMedicine2);
+		session.save(prescriptionMedicine3);
 		
 		session.getTransaction().commit();
 		

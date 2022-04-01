@@ -57,15 +57,21 @@ public class ExaminationController {
  	
  	//Get examination by id
  	@GetMapping("/examinations/{id}")
- 	public ResponseEntity<Examination> getEmployeeById(@PathVariable Long id) {
- 		return examinationService.getEmployeeById(id);
+ 	public ResponseEntity<Examination> getExaminationById(@PathVariable Long id) {
+ 		return examinationService.getExaminationById(id);
+ 	}
+ 	
+ 	//Get examination by id
+ 	@GetMapping("/examinations/completed")
+ 	public List<Examination> getCompletedExaminations() {
+ 		return examinationService.getCompletedExaminations();
  	}
  	
  	//Delete examination
- 	 	@DeleteMapping("/examinations/{id}")
- 	 	public ResponseEntity<Map<String, Boolean>> deleteExamination(@PathVariable Long id){
- 	 		return examinationService.deleteExamination(id);
- 	 	}
+ 	@DeleteMapping("/examinations/{id}")
+ 	public ResponseEntity<Map<String, Boolean>> deleteExamination(@PathVariable Long id){
+ 		return examinationService.deleteExamination(id);
+ 	}
  	
  	
 }
