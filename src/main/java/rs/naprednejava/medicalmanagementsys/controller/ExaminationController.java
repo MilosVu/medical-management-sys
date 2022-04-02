@@ -61,7 +61,8 @@ public class ExaminationController {
  		return examinationService.getExaminationById(id);
  	}
  	
- 	//Get examination by id
+ 	//Ovo izbaciti prestali smo da koristimo presli smo na prescriptions controller
+ 	//Get completed examinations
  	@GetMapping("/examinations/completed")
  	public List<Examination> getCompletedExaminations() {
  		return examinationService.getCompletedExaminations();

@@ -40,6 +40,12 @@ public class PrescriptionController {
         return prescriptionService.getAllPrescriptions();
     }
     
+    //Get all prescriptions by patient
+    @GetMapping("/prescriptions/patient/{id}")
+    public List<Prescription> getAllPrescriptionsByPatient(@PathVariable Long id){
+        return prescriptionService.getAllPrescriptionsByPatient(id);
+    }
+    
     //Create prescription
    	@PostMapping("/prescriptions")
    	public Prescription createPrescription(@RequestBody PrescriptionsMedicsRequestBody request) {

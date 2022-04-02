@@ -46,9 +46,8 @@ public class UserController {
     //Login
     @PostMapping("/login")
     public List<User> login(@RequestBody User user){
-    	
     	return userService.login(user);
-    	}
+    }
     
     //Get user by id
     @GetMapping("/users/{id}")

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import rs.naprednejava.medicalmanagementsys.exception.ResourceNotFoundException;
 import rs.naprednejava.medicalmanagementsys.model.Examination;
 import rs.naprednejava.medicalmanagementsys.model.Medicine;
+import rs.naprednejava.medicalmanagementsys.model.Patient;
 import rs.naprednejava.medicalmanagementsys.model.Prescription;
 import rs.naprednejava.medicalmanagementsys.model.PrescriptionMedicine;
 import rs.naprednejava.medicalmanagementsys.model.PrescriptionsMedicsRequestBody;
@@ -36,8 +37,25 @@ public class PrescriptionService {
 	@Autowired
     private PrescriptionMedicineRepository prescriptionMedicineRepository;
    
+	
     public List<Prescription> getAllPrescriptions(){
         return prescriptionRepository.findAll();
+    }
+    
+    
+    public List<Prescription> getAllPrescriptionsByPatient(Long id){
+    	List<Prescription> prescriptions = new ArrayList<>();
+    	List<Examination> examinations = examinationRepository.findByPatient( new Patient(id) );
+    	
+    	for (Examination examination : examinations) {
+			
+    		Prescription p = prescriptionRepository.getByExamination(examination);
+    		if(p != null) {
+    			prescriptions.add(p);
+    		}
+		}
+    	
+    	return prescriptions;
     }
     
     
@@ -97,4 +115,5 @@ public class PrescriptionService {
    		response.put("deleted", Boolean.TRUE);
    		return ResponseEntity.ok(response);
    	}
+
 }
