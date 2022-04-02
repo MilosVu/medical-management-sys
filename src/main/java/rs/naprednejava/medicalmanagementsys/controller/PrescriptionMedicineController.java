@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import rs.naprednejava.medicalmanagementsys.model.Medicine;
 import rs.naprednejava.medicalmanagementsys.model.PharmaceuticalCompany;
 import rs.naprednejava.medicalmanagementsys.model.PrescriptionMedicine;
 import rs.naprednejava.medicalmanagementsys.service.PharmaceuticalCompanyService;
@@ -42,7 +43,7 @@ public class PrescriptionMedicineController {
    	
    	//Get PrescriptionMedicineService by id
    	@GetMapping("/prescription-medicines/{id}")
-   	public ResponseEntity<PrescriptionMedicine> getPrescriptionMedicineById(@PathVariable Long id) {
+   	public List<Medicine> getPrescriptionMedicineById(@PathVariable Long id) {
    		return prescriptionMedicineService.getPrescriptionMedicineById(id);
    	}
    	
