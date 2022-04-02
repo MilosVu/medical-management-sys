@@ -12,9 +12,9 @@ import rs.naprednejava.medicalmanagementsys.model.Patient;
 @Repository
 public interface ExaminationRepository extends JpaRepository<Examination, Long>{
 
-	List<Examination> findByDoctor(Doctor doctor);
+	List<Examination> findByDoctorOrderByDateOfExaminationAsc(Doctor doctor);
 
-	List<Examination> findByPatient(Patient p);
+	List<Examination> findByPatientOrderByDateOfExaminationAsc(Patient p);
 	
 	List<Examination> findByStatusCompleted(boolean statusCompleted);
 

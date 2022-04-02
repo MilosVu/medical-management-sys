@@ -34,14 +34,14 @@ public class ExaminationService {
     public List<Examination> getAllExaminationsForDoctor(Long id){
     	Doctor d = new Doctor();
     	d.setUserId(id);
-        return examinationRepository.findByDoctor(d);
+        return examinationRepository.findByDoctorOrderByDateOfExaminationAsc(d);
     }
     
     
     public List<Examination> getAllExaminationsForPatient(Long id){
     	Patient p = new Patient();
     	p.setUserId(id);
-        return examinationRepository.findByPatient(p);
+        return examinationRepository.findByPatientOrderByDateOfExaminationAsc(p);
     }
 
     
