@@ -56,6 +56,7 @@ public class UserService {
 	    
 	    
 	   	public User updateUser(User user) {
+	   		user.setUserRole("receptionist");
 	   		return userRepository.save(user);
 	   	}
 	

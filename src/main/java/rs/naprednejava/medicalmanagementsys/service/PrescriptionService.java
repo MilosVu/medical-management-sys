@@ -46,7 +46,7 @@ public class PrescriptionService {
     
     public List<Prescription> getAllPrescriptionsByPatient(Long id){
     	List<Prescription> prescriptions = new ArrayList<>();
-    	List<Examination> examinations = examinationRepository.findByPatient( new Patient(id) );
+    	List<Examination> examinations = examinationRepository.findByPatientOrderByDateOfExaminationAsc( new Patient(id) );
     	
     	for (Examination examination : examinations) {
 			

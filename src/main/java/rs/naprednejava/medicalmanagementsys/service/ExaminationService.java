@@ -71,7 +71,17 @@ public class ExaminationService {
 
  	public ResponseEntity<Map<String, Boolean>> deleteExamination(Long id){
  		
+ 		Examination examination = examinationRepository.findById(id)
+ 				.orElseThrow(() -> new ResourceNotFoundException("Examination does not exist with id :" + id));
+ 	 		
  		Prescription prescription=prescriptionRepository.findByExaminationId(id);
+ 		
+ 		if(prescription==null) {
+ 			examinationRepository.delete(examination);
+ 	 	 	Map<String, Boolean> response = new HashMap<>();
+ 	 	 	response.put("deleted", Boolean.TRUE);
+ 	 	 	return ResponseEntity.ok(response);
+ 		}
  		
  		List<PrescriptionMedicine> prescriptionMedicines=prescriptionMedicineRepository.findAll();
  		
@@ -82,11 +92,6 @@ public class ExaminationService {
 		}
  		prescriptionRepository.delete(prescription);
  		
- 		
- 		
- 		Examination examination = examinationRepository.findById(id)
- 				.orElseThrow(() -> new ResourceNotFoundException("Examination does not exist with id :" + id));
- 	 		
  	 	examinationRepository.delete(examination);
  	 	Map<String, Boolean> response = new HashMap<>();
  	 	response.put("deleted", Boolean.TRUE);
