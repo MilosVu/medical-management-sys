@@ -49,6 +49,7 @@ public class PrescriptionController {
     //Create prescription
    	@PostMapping("/prescriptions")
    	public Prescription createPrescription(@RequestBody PrescriptionsMedicsRequestBody request) {
+   		System.out.println(request);
    		return prescriptionService.createPrescription(request);
    	}
    	

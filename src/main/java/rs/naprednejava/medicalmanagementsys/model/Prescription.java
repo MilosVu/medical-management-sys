@@ -80,6 +80,22 @@ public class Prescription {
 		super();
 
 		this.examination = examination;
+		this.examinationId = examination.getExaminationId();
+		this.disease = disease;
+		this.description = description;
+	}
+	public Prescription(Examination examination, String disease, String description) {
+		super();
+
+		this.examination = examination;
+		this.examinationId = examination.getExaminationId();
+		this.disease = disease;
+		this.description = description;
+	}
+	public Prescription(Long examinationId, String disease, String description) {
+		super();
+
+		
 		this.examinationId = examinationId;
 		this.disease = disease;
 		this.description = description;
