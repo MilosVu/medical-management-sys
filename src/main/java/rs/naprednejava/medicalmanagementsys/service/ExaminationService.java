@@ -17,14 +17,21 @@ import rs.naprednejava.medicalmanagementsys.exception.ResourceNotFoundException;
 import rs.naprednejava.medicalmanagementsys.model.Doctor;
 import rs.naprednejava.medicalmanagementsys.model.Examination;
 import rs.naprednejava.medicalmanagementsys.model.Patient;
+import rs.naprednejava.medicalmanagementsys.model.Prescription;
+import rs.naprednejava.medicalmanagementsys.model.PrescriptionMedicine;
 import rs.naprednejava.medicalmanagementsys.repository.ExaminationRepository;
+import rs.naprednejava.medicalmanagementsys.repository.PrescriptionMedicineRepository;
+import rs.naprednejava.medicalmanagementsys.repository.PrescriptionRepository;
 
 @Service
 public class ExaminationService {
 
 	@Autowired
     private ExaminationRepository examinationRepository;
-    
+	@Autowired
+    private PrescriptionRepository prescriptionRepository;
+	@Autowired
+    private PrescriptionMedicineRepository prescriptionMedicineRepository;
     
     public List<Examination> getAllExaminations(){
         return examinationRepository.findAll();
@@ -63,6 +70,20 @@ public class ExaminationService {
  	}
 
  	public ResponseEntity<Map<String, Boolean>> deleteExamination(Long id){
+ 		
+ 		Prescription prescription=prescriptionRepository.findByExaminationId(id);
+ 		
+ 		List<PrescriptionMedicine> prescriptionMedicines=prescriptionMedicineRepository.findAll();
+ 		
+ 		for (PrescriptionMedicine prescriptionMedicine : prescriptionMedicines) {
+			if(prescriptionMedicine.getPrescriptionMedicineId().getPrescription().getPrescriptionId()==prescription.getPrescriptionId()) {
+				prescriptionMedicineRepository.delete(prescriptionMedicine);
+			}
+		}
+ 		prescriptionRepository.delete(prescription);
+ 		
+ 		
+ 		
  		Examination examination = examinationRepository.findById(id)
  				.orElseThrow(() -> new ResourceNotFoundException("Examination does not exist with id :" + id));
  	 		
