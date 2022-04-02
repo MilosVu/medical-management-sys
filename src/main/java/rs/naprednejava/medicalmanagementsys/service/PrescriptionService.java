@@ -87,8 +87,8 @@ public class PrescriptionService {
    	
   
    	public ResponseEntity<Prescription> getPrescriptionId(Long id) {
-   		Prescription prescription = prescriptionRepository.findById(id)
-   				.orElseThrow(() -> new ResourceNotFoundException("Prescription does not exist with id :" + id));
+   		Prescription prescription = prescriptionRepository.findByExaminationId(id);
+   				
    		return ResponseEntity.ok(prescription);
    	}
    	
