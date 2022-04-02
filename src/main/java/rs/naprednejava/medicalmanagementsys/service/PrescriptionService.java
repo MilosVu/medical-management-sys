@@ -21,6 +21,7 @@ import rs.naprednejava.medicalmanagementsys.model.Medicine;
 import rs.naprednejava.medicalmanagementsys.model.Patient;
 import rs.naprednejava.medicalmanagementsys.model.Prescription;
 import rs.naprednejava.medicalmanagementsys.model.PrescriptionMedicine;
+import rs.naprednejava.medicalmanagementsys.model.PrescriptionMedicineId;
 import rs.naprednejava.medicalmanagementsys.model.PrescriptionsMedicsRequestBody;
 import rs.naprednejava.medicalmanagementsys.repository.ExaminationRepository;
 import rs.naprednejava.medicalmanagementsys.repository.PrescriptionMedicineRepository;
@@ -62,27 +63,32 @@ public class PrescriptionService {
    	public Prescription createPrescription(PrescriptionsMedicsRequestBody request) {
    		System.out.println(request);
 
-//   		Examination examination = (request.getPrescription()).getExamination();
-//   		examination.setStatusCompleted(true);
-//   		
-//   		examinationRepository.save(examination);
-//   		
-//   		request.getPrescription().setPrescriptionId(32);
-//   		
-//   		Prescription p = (Prescription) prescriptionRepository.save(request.getPrescription());
-//   		
-//   		List<PrescriptionMedicine> listPrescriptionMedicines = new ArrayList<>();
-//   		
-//   		for (Medicine m : request.getMedicines()) {
-//			PrescriptionMedicine prescriptionMedicine = new PrescriptionMedicine(p.getExaminationId(), m.getMedicineid() ,p, m);
-//			listPrescriptionMedicines.add(prescriptionMedicine);
-//			
-//		}
-//   		
-//   		prescriptionMedicineRepository.saveAll(listPrescriptionMedicines);
-//
-//   		return p;
-   		return null;
+   		Examination examination = (request.getPrescription()).getExamination();
+   		examination.setStatusCompleted(true);
+   		
+   		examinationRepository.save(examination);
+   		
+   		System.out.println(request.getPrescription());
+   		
+   		
+   		
+   		Prescription p = (Prescription) prescriptionRepository.save(request.getPrescription());
+   		
+   		List<PrescriptionMedicine> listPrescriptionMedicines = new ArrayList<>();
+   		
+   		for (Medicine m : request.getMedicines()) {
+   			PrescriptionMedicineId pmId=new PrescriptionMedicineId();
+   			pmId.setMedicine(m);
+   			pmId.setPrescription(p);
+			PrescriptionMedicine prescriptionMedicine = new PrescriptionMedicine(pmId);
+			listPrescriptionMedicines.add(prescriptionMedicine);
+			
+		}
+   		
+   		prescriptionMedicineRepository.saveAll(listPrescriptionMedicines);
+
+   		return p;
+   		
    	}
    	
   

@@ -30,43 +30,10 @@ public class PrescriptionMedicine {
 	public PrescriptionMedicine() {
 		super();
 	}
+
 	
-//	@ManyToOne
-//    @MapsId("prescriptionId")
-//	private Prescription prescription;
-//	
-//    @ManyToOne
-//    @MapsId("medicineId")
-//    private Medicine medicine;
-//   
-//	
-//	public Prescription getPrescription() {
-//		return prescription;
-//	}
-//
-//	public void setPrescription(Prescription prescription) {
-//		this.prescription = prescription;
-//	}
-//
-//	public Medicine getMedicine() {
-//		return medicine;
-//	}
-//
-//	public void setMedicine(Medicine medicine) {
-//		this.medicine = medicine;
-//	}
-//
-//	public PrescriptionMedicine(Long prescriptionId, Long medicineId, Prescription prescription, Medicine medicine) {
-//		super();
-//		this.prescriptionMedicineId = new PrescriptionMedicineId(prescriptionId, medicineId);
-//		this.prescription = prescription;
-//		this.medicine = medicine;
-//	}
-//
-//	public PrescriptionMedicine() {
-//		super();
-//		// TODO Auto-generated constructor stub
-//	}
+	
+
     
    
     
