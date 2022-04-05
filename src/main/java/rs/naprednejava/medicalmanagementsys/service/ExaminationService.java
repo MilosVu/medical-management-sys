@@ -74,7 +74,7 @@ public class ExaminationService {
  		Examination examination = examinationRepository.findById(id)
  				.orElseThrow(() -> new ResourceNotFoundException("Examination does not exist with id :" + id));
  	 		
- 		Prescription prescription=prescriptionRepository.findByExaminationId(id);
+ 		/*Prescription prescription=prescriptionRepository.findByExaminationId(id);
  		
  		if(prescription==null) {
  			examinationRepository.delete(examination);
@@ -90,7 +90,7 @@ public class ExaminationService {
 				prescriptionMedicineRepository.delete(prescriptionMedicine);
 			}
 		}
- 		prescriptionRepository.delete(prescription);
+ 		prescriptionRepository.delete(prescription);*/
  		
  	 	examinationRepository.delete(examination);
  	 	Map<String, Boolean> response = new HashMap<>();

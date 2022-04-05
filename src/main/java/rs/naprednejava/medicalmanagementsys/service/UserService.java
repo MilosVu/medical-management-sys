@@ -45,6 +45,8 @@ public class UserService {
 
 	    
 	   	public ResponseEntity<Map<String, Boolean>> deleteUser(Long id){
+	   		
+	   		System.out.println(id);
 	   		User user = userRepository.findById(id)
 	   				.orElseThrow(() -> new ResourceNotFoundException("User does not exist with id :" + id));
 	   		
